@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRUZ — Your Smile, Optimized</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FAFAF8;--off-white:#F2F1ED;--cream:#E8E6E0;--warm-gray:#B5B0A6;--mid-gray:#7A766D;--dark:#0D0D0C;--dark-surface:#151514;--dark-card:#1C1C1A;--highlight:#C4A26E;--highlight-soft:#D4B98A;--sans:'DM Sans',-apple-system,sans-serif;--serif:'Instrument Serif',Georgia,serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--sans);background:var(--white);color:var(--dark);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.container{max-width:1280px;margin:0 auto;padding:0 clamp(24px,5vw,80px)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;transition:background .4s,backdrop-filter .4s,padding .3s}
+nav.scrolled{background:rgba(13,13,12,.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+nav.light-mode{background:rgba(250,250,248,.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.05)}
+nav .container{display:flex;align-items:center;justify-content:space-between}
+.nav-logo img{height:28px;width:auto;transition:filter .3s}
+nav:not(.light-mode) .nav-logo img{filter:brightness(0) invert(1);mix-blend-mode:screen}
+nav.light-mode .nav-logo img{filter:none;mix-blend-mode:multiply}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{font-size:.82rem;font-weight:400;color:rgba(255,255,255,.6);text-decoration:none;letter-spacing:.04em;transition:color .3s}
+nav.light-mode .nav-links a{color:var(--mid-gray)}
+.nav-links a:hover{color:#fff}
+nav.light-mode .nav-links a:hover{color:var(--dark)}
+.nav-cta{font-size:.78rem!important;font-weight:500!important;color:var(--dark)!important;background:#fff;padding:10px 26px;border-radius:100px;transition:transform .2s,opacity .2s}
+nav.light-mode .nav-cta{color:var(--white)!important;background:var(--dark)}
+.nav-cta:hover{transform:scale(1.03);opacity:.9}
+
+/* HERO (DARK) */
+.hero{min-height:100vh;display:flex;align-items:center;padding:100px 0 80px;background:var(--dark);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 40%,rgba(196,162,110,.08) 0%,transparent 60%),radial-gradient(ellipse at 70% 60%,rgba(196,162,110,.04) 0%,transparent 50%);pointer-events:none}
+.hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;opacity:.5}
+.hero .container{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-content{max-width:520px}
+.hero-eyebrow{font-size:.72rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--highlight);margin-bottom:24px;opacity:0;animation:fadeUp .8s .2s forwards}
+.hero-title{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4rem);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:#fff;margin-bottom:24px;opacity:0;animation:fadeUp .8s .35s forwards}
+.hero-title em{font-style:italic;color:var(--highlight)}
+.hero-subtitle{font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,.55);font-weight:300;margin-bottom:40px;max-width:400px;opacity:0;animation:fadeUp .8s .5s forwards}
+.hero-actions{display:flex;align-items:center;gap:24px;opacity:0;animation:fadeUp .8s .65s forwards}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:.9rem;font-weight:500;color:var(--dark);background:#fff;border:none;padding:16px 36px;border-radius:100px;cursor:pointer;text-decoration:none;transition:transform .25s,box-shadow .25s;letter-spacing:.02em}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,255,255,.1)}
+.btn-primary svg{width:16px;height:16px;transition:transform .25s}
+.btn-primary:hover svg{transform:translateX(3px)}
+.btn-primary.dark{color:var(--white);background:var(--dark)}
+.btn-primary.dark:hover{box-shadow:0 12px 40px rgba(0,0,0,.15)}
+.btn-secondary{font-family:var(--sans);font-size:.85rem;font-weight:400;color:rgba(255,255,255,.5);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:2px;transition:color .3s,border-color .3s}
+.btn-secondary:hover{color:#fff;border-color:#fff}
+.hero-price{margin-top:20px;font-size:.8rem;color:rgba(255,255,255,.35);letter-spacing:.03em;opacity:0;animation:fadeUp .8s .8s forwards}
+.hero-price strong{font-size:1.3rem;font-weight:500;color:#fff}
+.hero-visual{display:flex;justify-content:center;align-items:center;opacity:0;animation:fadeIn 1.2s .4s forwards}
+.hero-image-wrapper{position:relative;width:100%;max-width:460px;aspect-ratio:3/4;border-radius:24px;overflow:hidden;background:var(--dark-surface);display:flex;align-items:center;justify-content:center;padding:24px}
+.hero-image-wrapper img{width:100%;height:100%;object-fit:contain}
+
+/* TRANSITION */
+.transition-section{height:120px;background:linear-gradient(to bottom,var(--dark) 0%,var(--white) 100%)}
+
+/* STATS */
+.stats-bar{padding:48px 0;border-bottom:1px solid var(--cream)}
+.stats-bar .container{display:flex;justify-content:space-between;align-items:center;gap:32px}
+.stat-item{text-align:center;flex:1}
+.stat-number{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;color:var(--dark);line-height:1}
+.stat-label{font-size:.75rem;color:var(--warm-gray);margin-top:8px;letter-spacing:.04em}
+.stat-divider{width:1px;height:48px;background:var(--cream)}
+
+/* SECTION HEADERS */
+.section-header{text-align:center;max-width:680px;margin:0 auto 80px}
+.section-eyebrow{font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--highlight);margin-bottom:16px}
+.section-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:400;line-height:1.15;color:var(--dark);margin-bottom:16px}
+.section-subtitle{font-size:1rem;line-height:1.7;color:var(--mid-gray);font-weight:300}
+
+/* LIFESTYLE */
+.lifestyle{padding:120px 0}
+.lifestyle-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.lifestyle-card{position:relative;border-radius:20px;overflow:hidden;cursor:default}
+.lifestyle-card.tall{grid-row:span 2}
+.lifestyle-card-inner{width:100%;height:100%;min-height:280px;position:relative}
+.lifestyle-card.tall .lifestyle-card-inner{min-height:100%}
+.lifestyle-placeholder{position:absolute;inset:0;background:var(--off-white);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;text-align:center}
+.lifestyle-placeholder svg{width:32px;height:32px;color:var(--warm-gray);opacity:.5}
+.lifestyle-placeholder .photo-hint{font-size:.72rem;color:var(--warm-gray);font-weight:400;line-height:1.5;max-width:200px}
+.lifestyle-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,12,.75) 0%,rgba(13,13,12,.1) 50%,transparent 100%);z-index:1}
+.lifestyle-card-content{position:absolute;bottom:0;left:0;right:0;padding:32px;color:#fff;z-index:2}
+.lifestyle-card-content h3{font-family:var(--serif);font-size:1.4rem;font-weight:400;margin-bottom:8px}
+.lifestyle-card-content p{font-size:.82rem;font-weight:300;opacity:.8;line-height:1.5;max-width:280px}
+
+/* SCIENCE */
+.science{padding:120px 0;background:var(--dark);color:#fff;overflow:hidden;position:relative}
+.science::before{content:'';position:absolute;top:-50%;left:-20%;width:140%;height:200%;background:radial-gradient(ellipse at center,rgba(196,162,110,.04) 0%,transparent 60%);pointer-events:none}
+.science .section-header{position:relative;z-index:1}
+.science .section-title{color:#fff}
+.science .section-subtitle{color:rgba(255,255,255,.5)}
+.science-visual{position:relative;z-index:1;max-width:900px;margin:0 auto}
+.sonic-diagram{display:grid;grid-template-columns:1fr auto 1fr;gap:48px;align-items:center}
+.sonic-side{display:flex;flex-direction:column;gap:32px}
+.sonic-side.right{text-align:right}
+.sonic-side.right .sonic-stat{align-items:flex-end}
+.sonic-stat h4{font-family:var(--serif);font-size:1.8rem;font-weight:400;color:#fff;margin-bottom:6px}
+.sonic-stat p{font-size:.82rem;color:rgba(255,255,255,.45);font-weight:300;line-height:1.5}
+.sonic-center{position:relative;width:240px;height:360px;display:flex;align-items:center;justify-content:center}
+.sonic-center img{width:100%;height:100%;object-fit:contain;position:relative;z-index:2}
+.sonic-pulse{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:200px;height:200px;border-radius:50%;border:2px solid rgba(196,162,110,.35);animation:pulse 2.5s ease-in-out infinite;box-shadow:0 0 20px rgba(196,162,110,.08)}
+.sonic-pulse:nth-child(2){width:280px;height:280px;animation-delay:.5s;border-color:rgba(196,162,110,.22);border-width:1.5px}
+.sonic-pulse:nth-child(3){width:360px;height:360px;animation-delay:1s;border-color:rgba(196,162,110,.12)}
+@keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:1}50%{transform:translate(-50%,-50%) scale(1.08);opacity:.5}}
+.science-comparison{margin-top:80px;position:relative;z-index:1}
+.comparison-bar{display:flex;align-items:center;gap:24px;margin-bottom:20px}
+.comparison-label{font-size:.82rem;color:rgba(255,255,255,.5);width:120px;flex-shrink:0;text-align:right}
+.comparison-track{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:100px;overflow:hidden}
+.comparison-fill{height:100%;border-radius:100px;transition:width 1.5s cubic-bezier(.25,.46,.45,.94);width:0}
+.comparison-fill.bruz{background:linear-gradient(90deg,var(--highlight),var(--highlight-soft))}
+.comparison-fill.manual{background:rgba(255,255,255,.15)}
+.comparison-value{font-size:.82rem;color:rgba(255,255,255,.7);width:60px;flex-shrink:0;font-weight:500}
+
+/* FEATURES */
+.features{padding:120px 0;background:var(--off-white)}
+.features-showcase{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:100px}
+.features-showcase:last-child{margin-bottom:0}
+.features-showcase.reverse{direction:rtl}
+.features-showcase.reverse>*{direction:ltr}
+.feature-visual{border-radius:24px;overflow:hidden;aspect-ratio:1;background:var(--cream)}
+.feature-visual img{width:100%;height:100%;object-fit:cover}
+.feature-info h3{font-family:var(--serif);font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:400;line-height:1.2;margin-bottom:20px}
+.feature-info p{font-size:.95rem;line-height:1.7;color:var(--mid-gray);font-weight:300;margin-bottom:28px;max-width:400px}
+.spec-item{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(0,0,0,.06)}
+.spec-icon{width:40px;height:40px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.spec-icon svg{width:18px;height:18px;color:var(--highlight)}
+.spec-text{font-size:.88rem;color:var(--dark)}
+.spec-text span{color:var(--mid-gray);font-weight:300;font-size:.82rem;display:block;margin-top:2px}
+
+/* MODES */
+.modes{padding:100px 0}
+.modes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:60px;max-width:800px;margin-left:auto;margin-right:auto}
+.mode-card{background:var(--off-white);border-radius:16px;padding:32px 28px;transition:transform .3s,box-shadow .3s;cursor:default}
+.mode-card:last-child{grid-column:1/-1;max-width:50%;margin:0 auto}
+.mode-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.05)}
+.mode-card h4{font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:6px}
+.mode-card p{font-size:.8rem;color:var(--mid-gray);line-height:1.5;font-weight:300}
+
+/* TESTIMONIALS */
+.testimonials{padding:120px 0;background:var(--off-white);overflow:hidden}
+.testimonial-track{display:flex;gap:24px;animation:scrollTrack 35s linear infinite;width:max-content;margin-top:60px}
+@keyframes scrollTrack{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.testimonial-card{background:#fff;border:1px solid var(--cream);border-radius:20px;padding:36px;min-width:360px;max-width:360px;flex-shrink:0;transition:border-color .3s}
+.testimonial-card:hover{border-color:var(--highlight)}
+.testimonial-rating{font-size:.72rem;font-weight:500;letter-spacing:.1em;color:var(--highlight);margin-bottom:20px;text-transform:uppercase}
+.testimonial-card blockquote{font-size:.92rem;line-height:1.7;color:var(--mid-gray);font-weight:300;margin-bottom:24px;font-style:normal}
+.testimonial-author{display:flex;align-items:center}
+.author-info{font-size:.82rem}
+.author-info strong{display:block;font-weight:500;color:var(--dark);margin-bottom:2px}
+.author-info span{color:var(--warm-gray);font-weight:300}
+
+/* SHOP CTA */
+.product-cta{padding:120px 0;text-align:center}
+.product-cta .container{max-width:900px}
+.shop-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:48px;text-align:left}
+.shop-image{border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:var(--off-white);position:relative;display:flex;align-items:center;justify-content:center;padding:24px}
+.shop-image img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0;padding:24px;opacity:0;transition:opacity .4s ease}
+.shop-image img.active{opacity:1}
+.shop-details h3{font-family:var(--serif);font-size:1.6rem;font-weight:400;margin-bottom:8px}
+.shop-details .shop-tagline{font-size:.88rem;color:var(--mid-gray);font-weight:300;margin-bottom:28px}
+.cta-price{margin-bottom:28px}
+.cta-price .price-current{font-family:var(--serif);font-size:2.4rem;color:var(--dark)}
+.cta-price .price-old{font-size:1rem;color:var(--warm-gray);text-decoration:line-through;margin-left:10px}
+.cta-price .price-note{display:block;font-size:.78rem;color:var(--warm-gray);margin-top:6px}
+.color-selector{display:flex;gap:14px;margin-bottom:32px}
+.color-option{display:flex;align-items:center;gap:8px;padding:8px 16px;border:1.5px solid var(--cream);border-radius:100px;cursor:pointer;transition:border-color .2s;font-size:.78rem;color:var(--mid-gray)}
+.color-option.active{border-color:var(--dark);color:var(--dark)}
+.color-option .dot{width:16px;height:16px;border-radius:50%;flex-shrink:0}
+.cta-badges{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.cta-badge{font-size:.78rem;color:var(--mid-gray);display:flex;align-items:center;gap:10px}
+.cta-badge svg{width:16px;height:16px;color:var(--highlight);flex-shrink:0}
+
+/* FAQ */
+.faq{padding:120px 0;background:var(--off-white)}
+.faq .container{max-width:760px}
+.faq-list{margin-top:60px}
+.faq-item{border-bottom:1px solid var(--cream)}
+.faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;padding:24px 0;background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:1rem;font-weight:400;color:var(--dark);text-align:left;transition:color .2s}
+.faq-question:hover{color:var(--highlight)}
+.faq-icon{width:28px;height:28px;border-radius:50%;border:1px solid var(--cream);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s,background .3s}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--dark);border-color:var(--dark)}
+.faq-icon svg{width:12px;height:12px;color:var(--mid-gray);transition:color .3s}
+.faq-item.open .faq-icon svg{color:#fff}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.25,.46,.45,.94),padding .4s}
+.faq-item.open .faq-answer{max-height:300px;padding-bottom:24px}
+.faq-answer p{font-size:.9rem;line-height:1.7;color:var(--mid-gray);font-weight:300}
+
+/* NEWSLETTER */
+.newsletter{padding:100px 0;text-align:center}
+.newsletter .container{max-width:560px}
+.newsletter .section-title{font-size:clamp(1.8rem,2.5vw,2.4rem);margin-bottom:12px}
+.newsletter-form{display:flex;gap:12px;margin-top:36px}
+.newsletter-form input{flex:1;font-family:var(--sans);font-size:.9rem;padding:16px 24px;border:1px solid var(--cream);border-radius:100px;background:var(--off-white);color:var(--dark);outline:none;transition:border-color .3s}
+.newsletter-form input:focus{border-color:var(--highlight)}
+.newsletter-form input::placeholder{color:var(--warm-gray)}
+.newsletter-form button{font-family:var(--sans);font-size:.85rem;font-weight:500;color:var(--white);background:var(--dark);border:none;padding:16px 32px;border-radius:100px;cursor:pointer;white-space:nowrap;transition:transform .2s,opacity .2s}
+.newsletter-form button:hover{transform:scale(1.03);opacity:.9}
+
+/* FOOTER */
+footer{padding:60px 0 40px;border-top:1px solid var(--cream)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;margin-bottom:48px}
+.footer-brand p{font-size:.85rem;color:var(--mid-gray);line-height:1.7;margin-top:16px;font-weight:300;max-width:300px}
+.footer-brand .footer-contact{margin-top:16px;font-size:.82rem;color:var(--mid-gray)}
+.footer-brand .footer-contact a{color:var(--mid-gray);text-decoration:none;transition:color .2s}
+.footer-brand .footer-contact a:hover{color:var(--dark)}
+.footer-col h5{font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--dark);margin-bottom:20px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-col a{font-size:.85rem;color:var(--mid-gray);text-decoration:none;font-weight:300;transition:color .2s}
+.footer-col a:hover{color:var(--dark)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--cream)}
+.footer-bottom p{font-size:.75rem;color:var(--warm-gray)}
+.footer-bottom a{color:inherit;text-decoration:none}
+.footer-social{display:flex;gap:16px}
+.footer-social a{width:36px;height:36px;border-radius:50%;background:var(--off-white);display:flex;align-items:center;justify-content:center;color:var(--mid-gray);text-decoration:none;transition:background .2s,color .2s}
+.footer-social a:hover{background:var(--dark);color:#fff}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero .container{grid-template-columns:1fr;gap:48px;text-align:center}
+  .hero-content{max-width:100%}
+  .hero-subtitle{max-width:100%;margin:0 auto 40px}
+  .hero-actions{justify-content:center}
+  .hero-visual{max-width:380px;margin:0 auto}
+  .lifestyle-grid{grid-template-columns:1fr}
+  .lifestyle-card.tall .lifestyle-card-inner{min-height:320px}
+  .sonic-diagram{grid-template-columns:1fr;gap:32px;text-align:center}
+  .sonic-side.right{text-align:center}
+  .sonic-side.right .sonic-stat{align-items:center}
+  .sonic-side .sonic-stat{align-items:center}
+  .sonic-center{margin:0 auto}
+  .features-showcase{grid-template-columns:1fr;gap:40px}
+  .features-showcase.reverse{direction:ltr}
+  .shop-layout{grid-template-columns:1fr;text-align:center}
+  .color-selector{justify-content:center}
+  .cta-badges{align-items:center}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:40px}
+}
+@media(max-width:640px){
+  .nav-links li:not(:last-child){display:none}
+  .hero{min-height:auto;padding:100px 0 60px}
+  .stats-bar .container{flex-wrap:wrap;gap:24px}
+  .stat-divider{display:none}
+  .stat-item{min-width:120px}
+  .modes-grid{grid-template-columns:1fr}
+  .mode-card:last-child{max-width:100%}
+  .testimonial-card{min-width:300px;max-width:300px}
+  .newsletter-form{flex-direction:column}
+  .footer-grid{grid-template-columns:1fr;gap:32px}
+  .comparison-label{width:80px;font-size:.72rem}
+  .shop-layout{gap:40px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <a href="https://bruzlife.com/" class="nav-logo">
+      <img src="https://bruzlife.com/cdn/shop/files/BRUZ_NEW-01_b9be6cff-39e4-4b27-9b4d-f35cea25bba1.jpg?v=1761573333&width=200" alt="BRUZ">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#science">Science</a></li>
+      <li><a href="#features">Technology</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="https://bruzlife.com/products/bruz-smart-electric-toothbrush-navy-blue" class="nav-cta">Shop Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- DARK HERO -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Introducing BRUZ</p>
+      <h1 class="hero-title">Your smile,<br><em>optimized.</em></h1>
+      <p class="hero-subtitle">The daily upgrade you feel every time you smile. 5 intelligent modes. 60-day battery. Designed for people who care about the details.</p>
+      <div class="hero-actions">
+        <a href="https://bruzlife.com/products/bruz-smart-electric-toothbrush-navy-blue" class="btn-primary">Shop Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#science" class="btn-secondary">How it works</a>
+      </div>
+      <div class="hero-price"><strong>₹1,499</strong> &nbsp;<s style="color:rgba(255,255,255,.25)">₹2,000</s> &nbsp;· Free Shipping</div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-image-wrapper">
+        <img src="https://bruzlife.com/cdn/shop/files/WhatsApp_Image_2025-09-16_at_16.01.57_4a4fab32.jpg?v=1760704229&width=1946" alt="BRUZ Smart Electric Toothbrush">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSITION -->
+<div class="transition-section"></div>
+
+<!-- STATS -->
+<section class="stats-bar reveal">
+  <div class="container">
+    <div class="stat-item"><div class="stat-number">40,000</div><div class="stat-label">Sonic Vibrations / Min</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><div class="stat-number">60 Days</div><div class="stat-label">Single-Charge Battery</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><div class="stat-number">5 Modes</div><div class="stat-label">Intelligent Cleaning</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><div class="stat-number">IPX7</div><div class="stat-label">Fully Waterproof</div></div>
+  </div>
+</section>
+
+<!-- LIFESTYLE -->
+<section class="lifestyle" id="lifestyle">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Live Better</p>
+      <h2 class="section-title">Your wellness routine<br>starts with your smile</h2>
+      <p class="section-subtitle">Oral health is the gateway to overall health. BRUZ fits seamlessly into your morning ritual, your travels, and your wind-down.</p>
+    </div>
+    <div class="lifestyle-grid">
+      <div class="lifestyle-card tall reveal">
+        <div class="lifestyle-card-inner">
+          <div class="lifestyle-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <div class="photo-hint"><strong style="color:var(--dark);display:block;margin-bottom:4px">Morning Ritual</strong>Person brushing in a sunlit modern bathroom, morning light streaming in. Lifestyle angle, not product-focused.</div>
+          </div>
+          <div class="lifestyle-card-overlay"></div>
+          <div class="lifestyle-card-content"><h3>Start every day right</h3><p>Two minutes is all it takes. Your morning ritual, elevated with sonic precision.</p></div>
+        </div>
+      </div>
+      <div class="lifestyle-card reveal">
+        <div class="lifestyle-card-inner">
+          <div class="lifestyle-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <div class="photo-hint"><strong style="color:var(--dark);display:block;margin-bottom:4px">Travel-Ready</strong>BRUZ in a Dopp kit or suitcase flat-lay alongside passport, watch, essentials. Travel-lifestyle vibe.</div>
+          </div>
+          <div class="lifestyle-card-overlay"></div>
+          <div class="lifestyle-card-content"><h3>Pack light, smile bright</h3><p>60-day battery means you never pack a charger. From Delhi to Dubai, it just works.</p></div>
+        </div>
+      </div>
+      <div class="lifestyle-card reveal">
+        <div class="lifestyle-card-inner">
+          <div class="lifestyle-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <div class="photo-hint"><strong style="color:var(--dark);display:block;margin-bottom:4px">Wind-Down</strong>Cozy evening setting, someone brushing at night. Warm ambient light, spa-like feel.</div>
+          </div>
+          <div class="lifestyle-card-overlay"></div>
+          <div class="lifestyle-card-content"><h3>Wind down with care</h3><p>Sensitive mode for gentle, mindful cleaning before bed. Your gums will thank you.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE SCIENCE -->
+<section class="science" id="science">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">The Science</p>
+      <h2 class="section-title">40,000 reasons to switch</h2>
+      <p class="section-subtitle">Sonic technology doesn't just clean the surface — it creates fluid dynamics that reach where bristles alone can't.</p>
+    </div>
+    <div class="sonic-diagram reveal">
+      <div class="sonic-side">
+        <div class="sonic-stat"><h4>10×</h4><p>More plaque removal compared to manual brushing</p></div>
+        <div class="sonic-stat"><h4>40,000</h4><p>Vibrations per minute driving fluid between teeth</p></div>
+      </div>
+      <div class="sonic-center">
+        <div class="sonic-pulse"></div><div class="sonic-pulse"></div><div class="sonic-pulse"></div>
+        <img src="" alt="" style="display:none">
+        <div style="position:relative;z-index:2;text-align:center;padding:20px">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(196,162,110,.5)" stroke-width="1.5" style="margin-bottom:12px"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <p style="font-size:.7rem;color:rgba(255,255,255,.4);line-height:1.5;max-width:180px;margin:0 auto"><strong style="color:rgba(255,255,255,.65);display:block;margin-bottom:4px">Nanobanana prompt:</strong>Close-up product shot of a sleek black electric toothbrush floating against a pure black background, with visible sonic vibration waves radiating outward from the brush head. Dramatic studio lighting, tech-product style, clean and minimal. No text.</p>
+        </div>
+      </div>
+      <div class="sonic-side right">
+        <div class="sonic-stat"><h4>3 Levels</h4><p>Adjustable intensity tailored to your sensitivity</p></div>
+        <div class="sonic-stat"><h4>DuPont™</h4><p>Advanced soft bristles designed for gum health</p></div>
+      </div>
+    </div>
+    <div class="science-comparison reveal">
+      <div class="comparison-bar">
+        <div class="comparison-label">BRUZ Sonic</div>
+        <div class="comparison-track"><div class="comparison-fill bruz" data-width="92%"></div></div>
+        <div class="comparison-value">92%</div>
+      </div>
+      <div class="comparison-bar">
+        <div class="comparison-label">Manual Brush</div>
+        <div class="comparison-track"><div class="comparison-fill manual" data-width="38%"></div></div>
+        <div class="comparison-value">38%</div>
+      </div>
+      <p style="text-align:center;font-size:.72rem;color:rgba(255,255,255,.3);margin-top:16px">Plaque removal effectiveness (based on sonic vs. manual brushing clinical studies)</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Technology</p>
+      <h2 class="section-title">Engineered to outperform</h2>
+      <p class="section-subtitle">Every detail is calibrated for a smarter, more intuitive experience.</p>
+    </div>
+    <div class="features-showcase reveal">
+      <div class="feature-visual"><img src="https://bruzlife.com/cdn/shop/files/Bruz_7_1.jpg?v=1760704229&width=800" alt="BRUZ Smart Timer"></div>
+      <div class="feature-info">
+        <h3>A smarter timer for<br>a more complete clean</h3>
+        <p>The 2-minute smart timer with 30-second zone alerts ensures even coverage across all four quadrants of your mouth.</p>
+        <div>
+          <div class="spec-item"><div class="spec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="spec-text">2-Minute Smart Timer<span>30-second zone change alerts</span></div></div>
+          <div class="spec-item"><div class="spec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 0 20 10 10 0 0 1 0-20z"/><path d="M2 12h20"/></svg></div><div class="spec-text">IPX7 Waterproof<span>Safe for shower use</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="features-showcase reverse reveal">
+      <div class="feature-visual"><img src="https://bruzlife.com/cdn/shop/files/Bruz_4.jpg?v=1760704229&width=800" alt="BRUZ Battery"></div>
+      <div class="feature-info">
+        <h3>Charge once.<br>Brush for two months.</h3>
+        <p>The integrated lithium battery holds charge for up to 60 days on a single 4-hour charge. That's two months of twice-daily brushing without thinking about power.</p>
+        <div>
+          <div class="spec-item"><div class="spec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><path d="M23 13v-2"/></svg></div><div class="spec-text">60-Day Battery Life<span>4-hour USB-C charge cycle</span></div></div>
+          <div class="spec-item"><div class="spec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="spec-text">Extra Brush Heads Included<span>Swap every 3 months for best results</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 MODES -->
+<section class="modes reveal">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">5 Intelligent Modes</p>
+      <h2 class="section-title">One brush, every need</h2>
+      <p class="section-subtitle">Tap through five modes calibrated for different oral care goals.</p>
+    </div>
+    <div class="modes-grid">
+      <div class="mode-card"><h4>Clean</h4><p>Everyday deep cleaning for a consistently fresh mouth</p></div>
+      <div class="mode-card"><h4>White</h4><p>Brightens enamel and removes surface stains over time</p></div>
+      <div class="mode-card"><h4>Polish</h4><p>High-gloss finish that leaves teeth feeling smooth</p></div>
+      <div class="mode-card"><h4>Milder</h4><p>Softer vibrations perfect for first-time electric brush users</p></div>
+      <div class="mode-card"><h4>Sensitive</h4><p>Ultra-gentle care designed specifically for gum sensitivity</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Community</p>
+      <h2 class="section-title">What people are saying</h2>
+      <p class="section-subtitle">Real reviews from real BRUZ users across India.</p>
+    </div>
+  </div>
+  <div class="testimonial-track">
+    <div class="testimonial-card"><div class="testimonial-rating">Verified Purchase</div><blockquote>I was part of the early product testing team and honestly didn't think an electric brush could make such a difference. After just a week, my teeth feel noticeably cleaner. The 2-minute timer keeps me consistent!</blockquote><div class="testimonial-author"><div class="author-info"><strong>Sharon Verma</strong><span>Delhi</span></div></div></div>
+    <div class="testimonial-card"><div class="testimonial-rating">Verified Purchase</div><blockquote>The product arrived quickly and exceeded all my expectations. The attention to detail is remarkable and the value for money is incredible.</blockquote><div class="testimonial-author"><div class="author-info"><strong>Shivani Kapoor</strong><span>Mumbai</span></div></div></div>
+    <div class="testimonial-card"><div class="testimonial-rating">Verified Purchase</div><blockquote>I travel a lot, and the 60-day battery is a game changer. It's been over a month since my last charge and it's still running strong!</blockquote><div class="testimonial-author"><div class="author-info"><strong>Vikas Patel</strong><span>Bangalore</span></div></div></div>
+    <div class="testimonial-card"><div class="testimonial-rating">Verified Purchase</div><blockquote>Soft bristles are comfortable, the waterproof design is a big plus, and the product itself is even better than described. Tried it without much expectation but exceeded them all.</blockquote><div class="testimonial-author"><div class="author-info"><strong>Palak Mehta</strong><span>Pune</span></div></div></div>
+    <div class="testimonial-card"><div class="testimonial-rating">Verified Purchase</div><blockquote>Initially skeptical about a new brand, but BRUZ feels as good as any international brand I've used. Clean design and completely water-resistant.</blockquote><div class="testimonial-author"><div class="author-info"><strong>Tushar Verma</strong><span>Delhi</span></div></div></div>
+    <div class="testimonial-card"><div class="testimonial-rating">Verified Purchase</div><blockquote>I've recommended this to all my friends and family. The shipping was fast and the packaging was nice. Quality is superb.</blockquote><div class="testimonial-author"><div class="author-info"><strong>Saloni Chopra</strong><span>Mumbai</span></div></div></div>
+    <div class="testimonial-card"><div class="testimonial-rating">Verified Purchase</div><blockquote>It has made such a positive impact on my routine. Quality is superb and the customer service is top-notch.</blockquote><div class="testimonial-author"><div class="author-info"><strong>Vishakha Divesh</strong><span>Mumbai</span></div></div></div>
+    <!-- Duplicate for infinite scroll -->
+    <div class="testimonial-card"><div class="testimonial-rating">Verified Purchase</div><blockquote>I was part of the early product testing team and honestly didn't think an electric brush could make such a difference. After just a week, my teeth feel noticeably cleaner. The 2-minute timer keeps me consistent!</blockquote><div class="testimonial-author"><div class="author-info"><strong>Sharon Verma</strong><span>Delhi</span></div></div></div>
+    <div class="testimonial-card"><div class="testimonial-rating">Verified Purchase</div><blockquote>The product arrived quickly and exceeded all my expectations. The attention to detail is remarkable and the value for money is incredible.</blockquote><div class="testimonial-author"><div class="author-info"><strong>Shivani Kapoor</strong><span>Mumbai</span></div></div></div>
+    <div class="testimonial-card"><div class="testimonial-rating">Verified Purchase</div><blockquote>I travel a lot, and the 60-day battery is a game changer. It's been over a month since my last charge and it's still running strong!</blockquote><div class="testimonial-author"><div class="author-info"><strong>Vikas Patel</strong><span>Bangalore</span></div></div></div>
+    <div class="testimonial-card"><div class="testimonial-rating">Verified Purchase</div><blockquote>Soft bristles are comfortable, the waterproof design is a big plus, and the product itself is even better than described. Tried it without much expectation but exceeded them all.</blockquote><div class="testimonial-author"><div class="author-info"><strong>Palak Mehta</strong><span>Pune</span></div></div></div>
+    <div class="testimonial-card"><div class="testimonial-rating">Verified Purchase</div><blockquote>Initially skeptical about a new brand, but BRUZ feels as good as any international brand I've used. Clean design and completely water-resistant.</blockquote><div class="testimonial-author"><div class="author-info"><strong>Tushar Verma</strong><span>Delhi</span></div></div></div>
+    <div class="testimonial-card"><div class="testimonial-rating">Verified Purchase</div><blockquote>I've recommended this to all my friends and family. The shipping was fast and the packaging was nice. Quality is superb.</blockquote><div class="testimonial-author"><div class="author-info"><strong>Saloni Chopra</strong><span>Mumbai</span></div></div></div>
+    <div class="testimonial-card"><div class="testimonial-rating">Verified Purchase</div><blockquote>It has made such a positive impact on my routine. Quality is superb and the customer service is top-notch.</blockquote><div class="testimonial-author"><div class="author-info"><strong>Vishakha Divesh</strong><span>Mumbai</span></div></div></div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section class="product-cta" id="shop">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Your Upgrade</p>
+      <h2 class="section-title">Choose your BRUZ</h2>
+    </div>
+    <div class="shop-layout reveal">
+      <div class="shop-image">
+        <img src="https://bruzlife.com/cdn/shop/files/WhatsApp_Image_2025-09-16_at_16.01.57_4a4fab32.jpg?v=1760704229&width=1946" alt="BRUZ Black" class="active" data-color="black">
+        <img src="https://bruzlife.com/cdn/shop/files/Brush-Blue.jpg?v=1760704229&width=1946" alt="BRUZ Blue" data-color="blue">
+        <img src="https://bruzlife.com/cdn/shop/files/brush-white.jpg?v=1760704229&width=1946" alt="BRUZ White" data-color="white">
+      </div>
+      <div class="shop-details">
+        <h3>BRUZ Smart Electric Toothbrush</h3>
+        <p class="shop-tagline">5 modes · 60-day battery · IPX7 waterproof</p>
+        <div class="cta-price">
+          <span class="price-current">₹1,499</span><span class="price-old">₹2,000</span>
+          <span class="price-note">Tax included · Free shipping on prepaid orders</span>
+        </div>
+        <div class="color-selector">
+          <div class="color-option active" data-color="black"><span class="dot" style="background:#1A1917"></span>Black</div>
+          <div class="color-option" data-color="blue"><span class="dot" style="background:#3A5A8C"></span>Blue</div>
+          <div class="color-option" data-color="white"><span class="dot" style="background:#E0DDD5;border:1px solid #ccc"></span>White</div>
+        </div>
+        <a href="https://bruzlife.com/products/bruz-smart-electric-toothbrush-navy-blue" class="btn-primary dark" style="font-size:.95rem;padding:18px 44px">Add to Cart — ₹1,499 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <div class="cta-badges">
+          <div class="cta-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Free shipping on all prepaid orders</div>
+          <div class="cta-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Easy returns within 7 days</div>
+          <div class="cta-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>12×7 customer support</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header reveal"><p class="section-eyebrow">Questions</p><h2 class="section-title">Frequently Asked</h2></div>
+    <div class="faq-list reveal">
+      <div class="faq-item"><button class="faq-question">What is your return policy?<span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-answer"><p>We offer a 7-day free return policy on unused products. If the product arrives damaged or defective, we'll replace it. Simply reach out to our support team within 7 days of delivery. Please make sure not to open the brush heads or tear the packaging, as this helps us ensure the toothbrush hasn't been used and can be safely returned.</p></div></div>
+      <div class="faq-item"><button class="faq-question">How long does shipping take?<span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-answer"><p>Orders are usually processed within 24 hours and delivered within 7-8 business days across India, depending on your location.</p></div></div>
+      <div class="faq-item"><button class="faq-question">Can I replace the brush heads?<span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-answer"><p>Yes, the brush heads are replaceable. We recommend changing them every 3 months for the best cleaning performance and hygiene.</p></div></div>
+      <div class="faq-item"><button class="faq-question">How can I track my order?<span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-answer"><p>Once your order ships, you'll receive a tracking number via email to monitor your package.</p></div></div>
+      <div class="faq-item"><button class="faq-question">Is BRUZ suitable for sensitive teeth?<span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-answer"><p>Absolutely. BRUZ features a dedicated Sensitive mode with gentler vibrations and advanced soft DuPont bristles specifically designed for sensitive gums and teeth.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="container reveal">
+    <p class="section-eyebrow">Stay in the loop</p>
+    <h2 class="section-title">Join the BRUZ Club</h2>
+    <p class="section-subtitle">Early access to new products, exclusive offers, and oral care tips.</p>
+    <div class="newsletter-form"><input type="email" placeholder="Enter your email"><button type="submit">Subscribe</button></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="https://bruzlife.com/" class="nav-logo"><img src="https://bruzlife.com/cdn/shop/files/BRUZ_NEW-01_b9be6cff-39e4-4b27-9b4d-f35cea25bba1.jpg?v=1761573333&width=200" alt="BRUZ" style="height:28px;mix-blend-mode:multiply"></a>
+        <p>Smarter, deeper, and more effective cleaning — designed in India for modern oral care.</p>
+        <div class="footer-contact">Email: <a href="mailto:contact.bruz@gmail.com">contact.bruz@gmail.com</a></div>
+      </div>
+      <div class="footer-col">
+        <h5>Service Policies</h5>
+        <ul>
+          <li><a href="https://bruzlife.com/pages/about-us">About Us</a></li>
+          <li><a href="https://bruzlife.com/policies/privacy-policy">Privacy Policy</a></li>
+          <li><a href="https://bruzlife.com/policies/refund-policy">Refund Policy</a></li>
+          <li><a href="https://bruzlife.com/policies/terms-of-service">Terms & Conditions</a></li>
+          <li><a href="https://bruzlife.com/policies/shipping-policy">Shipping Policy</a></li>
+          <li><a href="https://bruzlife.com/policies/contact-information">Contact Information</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Shop</h5>
+        <ul><li><a href="https://bruzlife.com/products/bruz-smart-electric-toothbrush-navy-blue">Smart Toothbrush</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026, <a href="https://bruzlife.com/">BRUZ</a>. All rights reserved.</p>
+      <div class="footer-social"><a href="https://www.instagram.com/bruz.life?igsh=MW40NGpidmVocDhobg%3D%3D&utm_source=qr" aria-label="Instagram" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav'),hero=document.querySelector('.hero');
+function updateNav(){const b=hero.getBoundingClientRect().bottom,s=window.scrollY>60;nav.classList.toggle('scrolled',s&&b>0);nav.classList.toggle('light-mode',b<=0)}
+window.addEventListener('scroll',updateNav);updateNav();
+
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+reveals.forEach(el=>obs.observe(el));
+
+const compObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.querySelectorAll('.comparison-fill').forEach(b=>{b.style.width=b.dataset.width})})},{threshold:.5});
+document.querySelectorAll('.science-comparison').forEach(el=>compObs.observe(el));
+
+document.querySelectorAll('.faq-question').forEach(btn=>{btn.addEventListener('click',()=>{const item=btn.parentElement,was=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!was)item.classList.add('open')})});
+
+document.querySelectorAll('.color-option').forEach(opt=>{opt.addEventListener('click',()=>{const c=opt.dataset.color;document.querySelectorAll('.color-option').forEach(o=>o.classList.remove('active'));opt.classList.add('active');document.querySelectorAll('.shop-image img').forEach(img=>{img.classList.toggle('active',img.dataset.color===c)})})});
+</script>
+</body>
+</html>
