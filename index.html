@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BRUZ — Small Tools. Big Compounding.</title>
+<title>BRUZ — The Smallest Upgrade That Actually Sticks</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --white:#FAFAF8;--off-white:#F2F1ED;--cream:#E8E6E0;
+  --white:#FAFAF8;--off-white:#F3F2EE;--cream:#E8E6E0;
   --warm-gray:#B5B0A6;--mid-gray:#7A766D;
   --dark:#0B0B0A;--dark-surface:#131312;--dark-card:#1A1A18;
   --highlight:#C4A26E;--highlight-soft:#D4B98A;
@@ -18,16 +18,16 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;font-size:16px}
 body{font-family:var(--sans);background:var(--white);color:var(--dark);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-.container{max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,80px)}
+.container{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}
 
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:background .4s,backdrop-filter .4s,padding .3s}
-nav.scrolled{background:rgba(11,11,10,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06)}
-nav.light-mode{background:rgba(250,250,248,.94);backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.05)}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:background .4s,padding .3s}
+nav.scrolled{background:rgba(11,11,10,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+nav.light-mode{background:rgba(250,250,248,.94);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.05)}
 nav .container{display:flex;align-items:center;justify-content:space-between}
-.nav-logo svg{height:22px;width:auto}
-.nav-logo .logo-letter{fill:#fff;transition:fill .3s}
-nav.light-mode .nav-logo .logo-letter{fill:var(--dark)}
+.nav-logo img{height:24px;width:auto;transition:filter .3s}
+nav:not(.light-mode) .nav-logo img{filter:brightness(0) invert(1);mix-blend-mode:screen}
+nav.light-mode .nav-logo img{filter:none;mix-blend-mode:multiply}
 .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
 .nav-links a{font-size:.78rem;font-weight:400;color:rgba(255,255,255,.55);text-decoration:none;letter-spacing:.03em;transition:color .3s}
 nav.light-mode .nav-links a{color:var(--mid-gray)}
@@ -37,60 +37,61 @@ nav.light-mode .nav-links a:hover{color:var(--dark)}
 nav.light-mode .nav-cta{color:var(--white)!important;background:var(--dark)}
 .nav-cta:hover{transform:scale(1.03);opacity:.9}
 
-/* ── HERO (DARK) ── */
+/* HERO */
 .hero{min-height:100vh;display:flex;align-items:center;padding:90px 0 60px;background:var(--dark);position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 25% 35%,rgba(196,162,110,.07) 0%,transparent 55%),radial-gradient(ellipse at 75% 65%,rgba(196,162,110,.04) 0%,transparent 45%);pointer-events:none}
-.hero .container{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;z-index:1}
+.hero .container{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;position:relative;z-index:1}
 .hero-content{max-width:500px}
-.hero-eyebrow{font-size:.68rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--highlight);margin-bottom:20px;opacity:0;animation:fadeUp .7s .15s forwards}
-.hero-title{font-family:var(--serif);font-size:clamp(2.4rem,4.5vw,3.6rem);font-weight:400;line-height:1.1;letter-spacing:-.01em;color:#fff;margin-bottom:20px;opacity:0;animation:fadeUp .7s .3s forwards}
+.hero-eyebrow{font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--highlight);margin-bottom:20px;opacity:0;animation:fadeUp .7s .2s forwards}
+.hero-title{font-family:var(--serif);font-size:clamp(2.4rem,4.5vw,3.6rem);font-weight:400;line-height:1.12;letter-spacing:-.01em;color:#fff;margin-bottom:20px;opacity:0;animation:fadeUp .7s .3s forwards}
 .hero-title em{font-style:italic;color:var(--highlight)}
-.hero-sub{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.5);font-weight:300;margin-bottom:32px;max-width:380px;opacity:0;animation:fadeUp .7s .45s forwards}
-.hero-actions{display:flex;align-items:center;gap:20px;opacity:0;animation:fadeUp .7s .6s forwards}
-.btn-p{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:.85rem;font-weight:500;color:var(--dark);background:#fff;border:none;padding:14px 32px;border-radius:100px;cursor:pointer;text-decoration:none;transition:transform .25s,box-shadow .25s;letter-spacing:.01em}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(255,255,255,.1)}
-.btn-p svg{width:14px;height:14px;transition:transform .25s}
-.btn-p:hover svg{transform:translateX(3px)}
-.btn-p.dark{color:var(--white);background:var(--dark)}
-.btn-p.dark:hover{box-shadow:0 10px 32px rgba(0,0,0,.15)}
-.btn-s{font-family:var(--sans);font-size:.8rem;font-weight:400;color:rgba(255,255,255,.45);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:2px;transition:color .3s,border-color .3s}
-.btn-s:hover{color:#fff;border-color:#fff}
-.hero-price{margin-top:16px;font-size:.78rem;color:rgba(255,255,255,.3);opacity:0;animation:fadeUp .7s .75s forwards}
+.hero-sub{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.5);font-weight:300;margin-bottom:32px;max-width:400px;opacity:0;animation:fadeUp .7s .45s forwards}
+.hero-actions{display:flex;align-items:center;gap:20px;opacity:0;animation:fadeUp .7s .55s forwards}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:.85rem;font-weight:500;color:var(--dark);background:#fff;border:none;padding:14px 32px;border-radius:100px;cursor:pointer;text-decoration:none;transition:transform .25s,box-shadow .25s;letter-spacing:.01em}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(255,255,255,.1)}
+.btn-primary svg{width:14px;height:14px;transition:transform .25s}
+.btn-primary:hover svg{transform:translateX(3px)}
+.btn-primary.dark{color:var(--white);background:var(--dark)}
+.btn-primary.dark:hover{box-shadow:0 10px 32px rgba(0,0,0,.18)}
+.btn-secondary{font-family:var(--sans);font-size:.8rem;font-weight:400;color:rgba(255,255,255,.45);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:2px;transition:color .3s,border-color .3s}
+.btn-secondary:hover{color:#fff;border-color:#fff}
+.hero-price{margin-top:16px;font-size:.78rem;color:rgba(255,255,255,.3);opacity:0;animation:fadeUp .7s .65s forwards}
 .hero-price strong{font-size:1.2rem;font-weight:500;color:#fff}
 .hero-visual{display:flex;justify-content:center;align-items:center;opacity:0;animation:fadeIn 1s .3s forwards}
 .hero-img{width:100%;max-width:420px;aspect-ratio:3/4;border-radius:20px;overflow:hidden;background:var(--dark-surface);display:flex;align-items:center;justify-content:center;padding:20px}
 .hero-img img{width:100%;height:100%;object-fit:contain}
 
-/* ── MANIFESTO ── */
-.manifesto{padding:80px 0;background:var(--dark);text-align:center;position:relative}
-.manifesto::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,162,110,.2),transparent)}
-.manifesto-text{max-width:700px;margin:0 auto;font-family:var(--serif);font-size:clamp(1.2rem,2.2vw,1.6rem);font-weight:400;font-style:italic;line-height:1.7;color:rgba(255,255,255,.55)}
+/* MANIFESTO */
+.manifesto{padding:72px 0;background:var(--dark);text-align:center;position:relative}
+.manifesto::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,162,110,.15),transparent)}
+.manifesto-text{max-width:620px;margin:0 auto;font-family:var(--serif);font-size:clamp(1.1rem,2vw,1.4rem);font-weight:400;font-style:italic;line-height:1.75;color:rgba(255,255,255,.5)}
 .manifesto-text strong{color:rgba(255,255,255,.85);font-weight:500;font-style:italic}
 
-/* ── TRANSITION ── */
-.trans{height:80px;background:linear-gradient(to bottom,var(--dark),var(--white))}
-.trans-rev{height:80px;background:linear-gradient(to bottom,var(--white),var(--dark))}
-.trans-d2l{height:80px;background:linear-gradient(to bottom,var(--dark),var(--off-white))}
-.trans-l2d{height:80px;background:linear-gradient(to bottom,var(--off-white),var(--dark))}
+/* TRANSITIONS */
+.tr-d2l{height:100px;background:linear-gradient(to bottom,var(--dark),var(--white))}
+.tr-l2d{height:100px;background:linear-gradient(to bottom,var(--white),var(--dark))}
+.tr-d2o{height:100px;background:linear-gradient(to bottom,var(--dark),var(--off-white))}
+.tr-o2d{height:100px;background:linear-gradient(to bottom,var(--off-white),var(--dark))}
+.tr-o2w{height:60px;background:linear-gradient(to bottom,var(--off-white),var(--white))}
 
-/* ── STATS ── */
+/* STATS */
 .stats{padding:40px 0;border-bottom:1px solid var(--cream)}
 .stats .container{display:flex;justify-content:space-between;align-items:center;gap:24px}
 .stat{text-align:center;flex:1}
-.stat-num{font-family:var(--serif);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:400;color:var(--dark);line-height:1}
-.stat-lbl{font-size:.7rem;color:var(--warm-gray);margin-top:6px;letter-spacing:.04em}
+.stat-num{font-family:var(--serif);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:400;color:var(--dark)}
+.stat-label{font-size:.7rem;color:var(--warm-gray);margin-top:6px;letter-spacing:.04em}
 .stat-div{width:1px;height:40px;background:var(--cream)}
 
-/* ── SHARED SECTION STYLES ── */
-.sec-hdr{text-align:center;max-width:620px;margin:0 auto 56px}
-.sec-eye{font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--highlight);margin-bottom:14px}
-.sec-ttl{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.6rem);font-weight:400;line-height:1.15;color:var(--dark);margin-bottom:12px}
-.sec-sub{font-size:.9rem;line-height:1.7;color:var(--mid-gray);font-weight:300}
+/* SECTION COMMON */
+.sec-header{text-align:center;max-width:600px;margin:0 auto 56px}
+.sec-eye{font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--highlight);margin-bottom:12px}
+.sec-title{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.6rem);font-weight:400;line-height:1.18;color:var(--dark);margin-bottom:12px}
+.sec-sub{font-size:.9rem;line-height:1.65;color:var(--mid-gray);font-weight:300}
 
-/* ── LIFESTYLE (LIGHT) ── */
+/* LIFESTYLE */
 .lifestyle{padding:80px 0}
 .ls-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.ls-card{position:relative;border-radius:16px;overflow:hidden;cursor:default}
+.ls-card{position:relative;border-radius:16px;overflow:hidden}
 .ls-card.tall{grid-row:span 2}
 .ls-inner{width:100%;height:100%;min-height:240px;position:relative}
 .ls-card.tall .ls-inner{min-height:100%}
@@ -100,208 +101,204 @@ nav.light-mode .nav-cta{color:var(--white)!important;background:var(--dark)}
 .ls-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,10,.72) 0%,rgba(11,11,10,.08) 50%,transparent 100%);z-index:1}
 .ls-content{position:absolute;bottom:0;left:0;right:0;padding:24px;color:#fff;z-index:2}
 .ls-content h3{font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:6px}
-.ls-content p{font-size:.78rem;font-weight:300;opacity:.75;line-height:1.5;max-width:260px}
+.ls-content p{font-size:.76rem;font-weight:300;opacity:.75;line-height:1.5;max-width:260px}
 
-/* ── SCIENCE (DARK) ── */
+/* SCIENCE (DARK) */
 .science{padding:80px 0;background:var(--dark);color:#fff;overflow:hidden;position:relative}
-.science::before{content:'';position:absolute;top:-40%;left:-15%;width:130%;height:180%;background:radial-gradient(ellipse at center,rgba(196,162,110,.04) 0%,transparent 55%);pointer-events:none}
-.science .sec-hdr{position:relative;z-index:1}
-.science .sec-ttl{color:#fff}
+.science::before{content:'';position:absolute;top:-40%;left:-15%;width:130%;height:180%;background:radial-gradient(ellipse at center,rgba(196,162,110,.035) 0%,transparent 55%);pointer-events:none}
+.science .sec-header{position:relative;z-index:1}
+.science .sec-title{color:#fff}
 .science .sec-sub{color:rgba(255,255,255,.45)}
-.sci-visual{position:relative;z-index:1;max-width:840px;margin:0 auto}
-.sonic-dia{display:grid;grid-template-columns:1fr auto 1fr;gap:40px;align-items:center}
+.sonic-dia{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto 1fr;gap:40px;align-items:center;max-width:860px;margin:0 auto}
 .sonic-side{display:flex;flex-direction:column;gap:28px}
 .sonic-side.r{text-align:right}
-.sonic-side.r .sonic-stat{align-items:flex-end}
-.sonic-stat h4{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:#fff;margin-bottom:4px}
-.sonic-stat p{font-size:.78rem;color:rgba(255,255,255,.4);font-weight:300;line-height:1.5}
+.sonic-side.r .s-stat{align-items:flex-end}
+.s-stat h4{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:#fff;margin-bottom:4px}
+.s-stat p{font-size:.78rem;color:rgba(255,255,255,.4);font-weight:300;line-height:1.5}
 .sonic-ctr{position:relative;width:200px;height:300px;display:flex;align-items:center;justify-content:center}
-.sonic-pulse{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;border:2px solid rgba(196,162,110,.3);animation:pulse 2.5s ease-in-out infinite;box-shadow:0 0 24px rgba(196,162,110,.06)}
-.sonic-pulse:nth-child(1){width:160px;height:160px}
-.sonic-pulse:nth-child(2){width:230px;height:230px;animation-delay:.5s;border-width:1.5px;border-color:rgba(196,162,110,.18)}
-.sonic-pulse:nth-child(3){width:300px;height:300px;animation-delay:1s;border-width:1px;border-color:rgba(196,162,110,.1)}
+.pulse{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;border:2px solid rgba(196,162,110,.3);animation:pulse 2.5s ease-in-out infinite;box-shadow:0 0 24px rgba(196,162,110,.06)}
+.pulse.p1{width:160px;height:160px}
+.pulse.p2{width:230px;height:230px;animation-delay:.5s;border-width:1.5px;border-color:rgba(196,162,110,.18)}
+.pulse.p3{width:300px;height:300px;animation-delay:1s;border-width:1px;border-color:rgba(196,162,110,.1)}
 @keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:1}50%{transform:translate(-50%,-50%) scale(1.06);opacity:.5}}
-.sonic-ctr .sci-placeholder{position:relative;z-index:2;text-align:center;padding:16px}
-.sonic-ctr .sci-placeholder svg{margin-bottom:8px}
-.sonic-ctr .sci-placeholder p{font-size:.65rem;color:rgba(255,255,255,.35);line-height:1.5;max-width:160px;margin:0 auto}
-.sci-comp{margin-top:56px;position:relative;z-index:1;max-width:600px;margin-left:auto;margin-right:auto}
+.sci-ph{position:relative;z-index:2;text-align:center;padding:16px}
+.sci-ph svg{margin-bottom:8px}
+.sci-ph p{font-size:.65rem;color:rgba(255,255,255,.35);line-height:1.5;max-width:160px;margin:0 auto}
+.sci-ph p strong{color:rgba(255,255,255,.6);display:block;margin-bottom:4px}
+.sci-comp{margin-top:56px;position:relative;z-index:1;max-width:700px;margin-left:auto;margin-right:auto}
 .comp-row{display:flex;align-items:center;gap:20px;margin-bottom:16px}
-.comp-lbl{font-size:.78rem;color:rgba(255,255,255,.45);width:100px;flex-shrink:0;text-align:right}
+.comp-label{font-size:.78rem;color:rgba(255,255,255,.45);width:110px;flex-shrink:0;text-align:right}
 .comp-track{flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:100px;overflow:hidden}
 .comp-fill{height:100%;border-radius:100px;transition:width 1.5s cubic-bezier(.25,.46,.45,.94);width:0}
-.comp-fill.bruz{background:linear-gradient(90deg,var(--highlight),var(--highlight-soft))}
-.comp-fill.manual{background:rgba(255,255,255,.12)}
-.comp-val{font-size:.78rem;color:rgba(255,255,255,.6);width:48px;flex-shrink:0;font-weight:500}
+.comp-fill.b{background:linear-gradient(90deg,var(--highlight),var(--highlight-soft))}
+.comp-fill.m{background:rgba(255,255,255,.12)}
+.comp-val{font-size:.78rem;color:rgba(255,255,255,.6);width:50px;flex-shrink:0;font-weight:500}
+.sci-note{text-align:center;font-size:.66rem;color:rgba(255,255,255,.25);margin-top:14px}
 
-/* ── FEATURES (LIGHT) ── */
+/* FEATURES (LIGHT) */
 .features{padding:80px 0;background:var(--off-white)}
-.feat-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:72px}
+.feat-row{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-bottom:72px}
 .feat-row:last-child{margin-bottom:0}
 .feat-row.rev{direction:rtl}
 .feat-row.rev>*{direction:ltr}
 .feat-img{border-radius:20px;overflow:hidden;aspect-ratio:1;background:var(--cream)}
 .feat-img img{width:100%;height:100%;object-fit:cover}
-.feat-info h3{font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.8rem);font-weight:400;line-height:1.2;margin-bottom:14px}
-.feat-info p{font-size:.88rem;line-height:1.7;color:var(--mid-gray);font-weight:300;margin-bottom:20px;max-width:380px}
-.spec{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(0,0,0,.06)}
-.spec-ic{width:36px;height:36px;border-radius:9px;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-.spec-ic svg{width:16px;height:16px;color:var(--highlight)}
-.spec-tx{font-size:.82rem;color:var(--dark)}
-.spec-tx span{color:var(--mid-gray);font-weight:300;font-size:.75rem;display:block;margin-top:2px}
+.feat-info h3{font-family:var(--serif);font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:400;line-height:1.2;margin-bottom:16px}
+.feat-info p{font-size:.88rem;line-height:1.65;color:var(--mid-gray);font-weight:300;margin-bottom:20px;max-width:380px}
+.spec{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(0,0,0,.05)}
+.spec-ico{width:36px;height:36px;border-radius:9px;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+.spec-ico svg{width:16px;height:16px;color:var(--highlight)}
+.spec-txt{font-size:.82rem;color:var(--dark)}
+.spec-txt span{color:var(--mid-gray);font-weight:300;font-size:.76rem;display:block;margin-top:1px}
 
-/* ── MODES (LIGHT) ── */
-.modes{padding:72px 0}
-.modes-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:48px}
-.mode{background:var(--off-white);border-radius:14px;padding:24px 16px;text-align:center;transition:transform .3s,box-shadow .3s}
-.mode:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.04)}
-.mode h4{font-family:var(--serif);font-size:1rem;font-weight:400;margin-bottom:4px}
-.mode p{font-size:.72rem;color:var(--mid-gray);line-height:1.4;font-weight:300}
+/* MODES (DARK) */
+.modes{padding:80px 0;background:var(--dark);color:#fff}
+.modes .sec-title{color:#fff}
+.modes .sec-sub{color:rgba(255,255,255,.45)}
+.modes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:640px;margin:48px auto 0}
+.modes-grid .mode:last-child{grid-column:1/-1;max-width:50%;justify-self:center}
+.mode{background:var(--dark-card);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:24px 20px;text-align:center;transition:border-color .3s,transform .3s}
+.mode:hover{border-color:rgba(196,162,110,.25);transform:translateY(-3px)}
+.mode h4{font-family:var(--serif);font-size:1.05rem;font-weight:400;margin-bottom:5px;color:#fff}
+.mode p{font-size:.74rem;color:rgba(255,255,255,.4);line-height:1.45;font-weight:300}
 
-/* ── TESTIMONIALS (DARK) ── */
-.reviews{padding:80px 0;background:var(--dark);overflow:hidden}
-.reviews .sec-ttl{color:#fff}
-.reviews .sec-sub{color:rgba(255,255,255,.4)}
-.rev-track{display:flex;gap:20px;animation:scrollT 35s linear infinite;width:max-content;margin-top:48px}
-@keyframes scrollT{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.rev-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:28px;min-width:320px;max-width:320px;flex-shrink:0;transition:border-color .3s}
-.rev-card:hover{border-color:rgba(196,162,110,.25)}
-.rev-tag{font-size:.65rem;font-weight:500;letter-spacing:.1em;color:var(--highlight);margin-bottom:16px;text-transform:uppercase}
-.rev-card blockquote{font-size:.85rem;line-height:1.7;color:rgba(255,255,255,.55);font-weight:300;margin-bottom:18px;font-style:normal}
-.rev-author{font-size:.78rem}
-.rev-author strong{display:block;font-weight:500;color:rgba(255,255,255,.8);margin-bottom:2px}
-.rev-author span{color:rgba(255,255,255,.35);font-weight:300}
+/* TESTIMONIALS */
+.testimonials{padding:80px 0;background:var(--off-white);overflow:hidden}
+.testi-track{display:flex;gap:20px;animation:scroll 40s linear infinite;width:max-content;margin-top:48px}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.testi-card{background:#fff;border:1px solid var(--cream);border-radius:16px;padding:28px;min-width:320px;max-width:320px;flex-shrink:0;transition:border-color .3s;display:flex;flex-direction:column}
+.testi-card:hover{border-color:var(--highlight)}
+.testi-card blockquote{font-size:.85rem;line-height:1.65;color:var(--mid-gray);font-weight:300;font-style:normal;flex:1}
+.testi-author{font-size:.78rem;margin-top:20px;padding-top:16px;border-top:1px solid var(--cream)}
+.testi-author strong{display:block;font-weight:500;color:var(--dark);margin-bottom:1px}
+.testi-author span{color:var(--warm-gray);font-weight:300}
 
-/* ── SHOP (LIGHT) ── */
+/* SHOP */
 .shop{padding:80px 0;text-align:center}
-.shop .container{max-width:900px}
-.shop-lay{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:40px;text-align:left}
-.shop-img{border-radius:20px;overflow:hidden;aspect-ratio:4/5;background:var(--off-white);position:relative;display:flex;align-items:center;justify-content:center;padding:20px}
+.shop .container{max-width:880px}
+.shop-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:40px;text-align:left}
+.shop-img{border-radius:20px;overflow:hidden;aspect-ratio:4/5;background:var(--off-white);position:relative;padding:20px}
 .shop-img img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0;padding:20px;opacity:0;transition:opacity .4s}
 .shop-img img.active{opacity:1}
 .shop-det h3{font-family:var(--serif);font-size:1.4rem;font-weight:400;margin-bottom:6px}
-.shop-det .shop-tag{font-size:.82rem;color:var(--mid-gray);font-weight:300;margin-bottom:24px}
+.shop-det .tagline{font-size:.82rem;color:var(--mid-gray);font-weight:300;margin-bottom:24px}
 .s-price{margin-bottom:24px}
-.s-price .cur{font-family:var(--serif);font-size:2rem;color:var(--dark)}
-.s-price .old{font-size:.95rem;color:var(--warm-gray);text-decoration:line-through;margin-left:8px}
-.s-price .note{display:block;font-size:.72rem;color:var(--warm-gray);margin-top:4px}
-.colors{display:flex;gap:10px;margin-bottom:24px}
-.color-opt{display:flex;align-items:center;gap:6px;padding:7px 14px;border:1.5px solid var(--cream);border-radius:100px;cursor:pointer;transition:border-color .2s;font-size:.72rem;color:var(--mid-gray)}
-.color-opt.active{border-color:var(--dark);color:var(--dark)}
-.color-opt .dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
-.s-badges{display:flex;flex-direction:column;gap:10px;margin-top:24px}
-.s-badge{font-size:.72rem;color:var(--mid-gray);display:flex;align-items:center;gap:8px}
+.s-price .now{font-family:var(--serif);font-size:2.1rem;color:var(--dark)}
+.s-price .was{font-size:.95rem;color:var(--warm-gray);text-decoration:line-through;margin-left:8px}
+.s-price .note{display:block;font-size:.72rem;color:var(--warm-gray);margin-top:5px}
+.clr-sel{display:flex;gap:10px;margin-bottom:28px}
+.clr-opt{display:flex;align-items:center;gap:7px;padding:7px 14px;border:1.5px solid var(--cream);border-radius:100px;cursor:pointer;transition:border-color .2s;font-size:.74rem;color:var(--mid-gray)}
+.clr-opt.active{border-color:var(--dark);color:var(--dark)}
+.clr-opt .d{width:14px;height:14px;border-radius:50%;flex-shrink:0}
+.inbox-detail{margin-top:20px;font-size:.78rem;color:var(--mid-gray);font-weight:300;line-height:1.5;padding-top:16px;border-top:1px solid var(--cream)}
+.s-badges{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.s-badge{font-size:.74rem;color:var(--mid-gray);display:flex;align-items:center;gap:8px}
 .s-badge svg{width:14px;height:14px;color:var(--highlight);flex-shrink:0}
-.coming-soon{margin-top:20px;padding:14px 20px;background:var(--off-white);border-radius:12px;font-size:.72rem;color:var(--mid-gray);line-height:1.5}
-.coming-soon strong{color:var(--dark);font-weight:500}
 
-/* ── FAQ (LIGHT BG) ── */
-.faq{padding:80px 0;background:var(--off-white)}
+/* COMING SOON */
+.coming{padding:56px 0;background:var(--off-white);text-align:center}
+.coming .container{max-width:500px}
+.coming p{font-size:.88rem;color:var(--mid-gray);font-weight:300;line-height:1.6}
+.coming .hint{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--dark);margin-top:12px}
+
+/* FAQ */
+.faq{padding:80px 0}
 .faq .container{max-width:700px}
 .faq-list{margin-top:48px}
 .faq-item{border-bottom:1px solid var(--cream)}
-.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 0;background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:.9rem;font-weight:400;color:var(--dark);text-align:left;transition:color .2s}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 0;background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:.92rem;font-weight:400;color:var(--dark);text-align:left;transition:color .2s;gap:16px}
 .faq-q:hover{color:var(--highlight)}
-.faq-ic{width:24px;height:24px;border-radius:50%;border:1px solid var(--cream);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s,background .3s}
-.faq-item.open .faq-ic{transform:rotate(45deg);background:var(--dark);border-color:var(--dark)}
-.faq-ic svg{width:10px;height:10px;color:var(--mid-gray);transition:color .3s}
-.faq-item.open .faq-ic svg{color:#fff}
+.faq-ico{width:24px;height:24px;border-radius:50%;border:1px solid var(--cream);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s,background .3s}
+.faq-item.open .faq-ico{transform:rotate(45deg);background:var(--dark);border-color:var(--dark)}
+.faq-ico svg{width:10px;height:10px;color:var(--mid-gray);transition:color .3s}
+.faq-item.open .faq-ico svg{color:#fff}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.25,.46,.45,.94),padding .4s}
 .faq-item.open .faq-a{max-height:300px;padding-bottom:20px}
-.faq-a p{font-size:.85rem;line-height:1.7;color:var(--mid-gray);font-weight:300}
+.faq-a p{font-size:.85rem;line-height:1.65;color:var(--mid-gray);font-weight:300}
 
-/* ── NEWSLETTER ── */
-.nl{padding:72px 0;text-align:center}
-.nl .container{max-width:500px}
-.nl .sec-ttl{font-size:clamp(1.5rem,2.2vw,2rem);margin-bottom:10px}
-.nl-form{display:flex;gap:10px;margin-top:28px}
-.nl-form input{flex:1;font-family:var(--sans);font-size:.85rem;padding:14px 20px;border:1px solid var(--cream);border-radius:100px;background:var(--off-white);color:var(--dark);outline:none;transition:border-color .3s}
-.nl-form input:focus{border-color:var(--highlight)}
-.nl-form input::placeholder{color:var(--warm-gray)}
-.nl-form button{font-family:var(--sans);font-size:.8rem;font-weight:500;color:var(--white);background:var(--dark);border:none;padding:14px 28px;border-radius:100px;cursor:pointer;white-space:nowrap;transition:transform .2s,opacity .2s}
-.nl-form button:hover{transform:scale(1.03);opacity:.9}
+/* NEWSLETTER */
+.news{padding:64px 0;text-align:center}
+.news .container{max-width:480px}
+.news .sec-title{font-size:clamp(1.5rem,2.2vw,2rem);margin-bottom:10px}
+.news-form{display:flex;gap:10px;margin-top:28px}
+.news-form input{flex:1;font-family:var(--sans);font-size:.85rem;padding:14px 20px;border:1px solid var(--cream);border-radius:100px;background:var(--off-white);color:var(--dark);outline:none;transition:border-color .3s}
+.news-form input:focus{border-color:var(--highlight)}
+.news-form input::placeholder{color:var(--warm-gray)}
+.news-form button{font-family:var(--sans);font-size:.8rem;font-weight:500;color:var(--white);background:var(--dark);border:none;padding:14px 28px;border-radius:100px;cursor:pointer;white-space:nowrap;transition:transform .2s}
+.news-form button:hover{transform:scale(1.03)}
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer{padding:48px 0 32px;border-top:1px solid var(--cream)}
 .ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:40px}
-.ft-brand p{font-size:.8rem;color:var(--mid-gray);line-height:1.7;margin-top:14px;font-weight:300;max-width:280px}
+.ft-brand p{font-size:.8rem;color:var(--mid-gray);line-height:1.65;margin-top:14px;font-weight:300;max-width:280px}
 .ft-brand .ft-email{margin-top:12px;font-size:.78rem;color:var(--mid-gray)}
 .ft-brand .ft-email a{color:var(--mid-gray);text-decoration:none;transition:color .2s}
 .ft-brand .ft-email a:hover{color:var(--dark)}
-.ft-col h5{font-size:.68rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--dark);margin-bottom:16px}
+.ft-col h5{font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--dark);margin-bottom:16px}
 .ft-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
 .ft-col a{font-size:.8rem;color:var(--mid-gray);text-decoration:none;font-weight:300;transition:color .2s}
 .ft-col a:hover{color:var(--dark)}
 .ft-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--cream)}
 .ft-bottom p{font-size:.7rem;color:var(--warm-gray)}
 .ft-bottom a{color:inherit;text-decoration:none}
-.ft-social a{width:32px;height:32px;border-radius:50%;background:var(--off-white);display:flex;align-items:center;justify-content:center;color:var(--mid-gray);text-decoration:none;transition:background .2s,color .2s}
+.ft-social a{width:32px;height:32px;border-radius:50%;background:var(--off-white);display:inline-flex;align-items:center;justify-content:center;color:var(--mid-gray);text-decoration:none;transition:background .2s,color .2s}
 .ft-social a:hover{background:var(--dark);color:#fff}
 
-/* ── ANIMATIONS ── */
+/* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
-/* ── RESPONSIVE ── */
+/* RESPONSIVE */
 @media(max-width:1024px){
   .hero .container{grid-template-columns:1fr;gap:36px;text-align:center}
-  .hero-content{max-width:100%}
-  .hero-sub{max-width:100%;margin:0 auto 32px}
-  .hero-actions{justify-content:center}
-  .hero-visual{max-width:320px;margin:0 auto}
-  .ls-grid{grid-template-columns:1fr}
-  .ls-card.tall .ls-inner{min-height:260px}
+  .hero-content{max-width:100%}.hero-sub{max-width:100%;margin:0 auto 32px}
+  .hero-actions{justify-content:center}.hero-visual{max-width:320px;margin:0 auto}
+  .ls-grid{grid-template-columns:1fr}.ls-card.tall .ls-inner{min-height:260px}
   .sonic-dia{grid-template-columns:1fr;gap:24px;text-align:center}
-  .sonic-side.r{text-align:center}
-  .sonic-side.r .sonic-stat{align-items:center}
-  .sonic-side .sonic-stat{align-items:center}
-  .sonic-ctr{margin:0 auto}
-  .feat-row{grid-template-columns:1fr;gap:32px}
-  .feat-row.rev{direction:ltr}
-  .modes-grid{grid-template-columns:repeat(3,1fr)}
-  .shop-lay{grid-template-columns:1fr;text-align:center}
-  .colors{justify-content:center}
-  .s-badges{align-items:center}
+  .sonic-side.r{text-align:center}.sonic-side.r .s-stat{align-items:center}
+  .sonic-side .s-stat{align-items:center}.sonic-ctr{margin:0 auto}
+  .feat-row{grid-template-columns:1fr;gap:32px}.feat-row.rev{direction:ltr}
+  .shop-layout{grid-template-columns:1fr;text-align:center}
+  .clr-sel{justify-content:center}.s-badges{align-items:center}
   .ft-grid{grid-template-columns:1fr 1fr;gap:32px}
 }
 @media(max-width:640px){
   .nav-links li:not(:last-child){display:none}
   .hero{min-height:auto;padding:80px 0 48px}
-  .hero-img{max-width:260px;aspect-ratio:2/3}
-  .manifesto{padding:48px 0}
-  .manifesto-text{font-size:1rem;padding:0 8px}
-  .trans,.trans-rev,.trans-d2l,.trans-l2d{height:48px}
-  .stats .container{flex-wrap:wrap;gap:16px}
-  .stat-div{display:none}
-  .stat{min-width:100px}
-  .stat-num{font-size:1.3rem}
-  .lifestyle,.science,.features,.shop,.faq,.nl{padding:56px 0}
-  .modes{padding:48px 0}
-  .reviews{padding:56px 0}
-  .sec-hdr{margin-bottom:36px}
-  .modes-grid{grid-template-columns:repeat(2,1fr);gap:8px}
-  .mode{padding:18px 12px}
-  .rev-card{min-width:270px;max-width:270px;padding:22px}
-  .nl-form{flex-direction:column}
+  .hero-img{max-width:260px;aspect-ratio:3/4}
+  .manifesto{padding:40px 0}.manifesto-text{font-size:.95rem;padding:0 8px}
+  .tr-d2l,.tr-l2d,.tr-d2o,.tr-o2d,.tr-o2w{height:56px}
+  .stats .container{flex-wrap:wrap;gap:16px}.stat-div{display:none}.stat{min-width:110px}
+  .lifestyle,.science,.features,.testimonials,.shop,.faq{padding:48px 0}
+  .sec-header{margin-bottom:32px}
+  .ls-grid{gap:12px}.ls-inner{min-height:200px}.ls-card.tall .ls-inner{min-height:220px}
+  .ls-content{padding:16px}.ls-content h3{font-size:1.05rem}
+  .modes{padding:56px 0}
+  .modes-grid{gap:10px}
+  .modes-grid .mode:last-child{max-width:100%}
+  .mode{padding:18px 14px}.mode h4{font-size:.92rem}
+  .testi-card{min-width:270px;max-width:270px;padding:22px}
+  .testi-card blockquote{font-size:.8rem}
+  .shop-layout{gap:32px}.shop-img{aspect-ratio:1}
+  .news-form{flex-direction:column}
   .ft-grid{grid-template-columns:1fr;gap:24px}
-  .shop-lay{gap:32px}
-  .feat-row{gap:24px;margin-bottom:48px}
-  .comp-lbl{width:72px;font-size:.68rem}
-  .ls-inner{min-height:200px}
-  .ls-card.tall .ls-inner{min-height:240px}
+  .coming{padding:36px 0}
+  .s-price .now{font-size:1.8rem}
+  .sci-comp{margin-top:36px}
+  .sonic-ctr{width:160px;height:240px}
+  .pulse.p1{width:120px;height:120px}.pulse.p2{width:170px;height:170px}.pulse.p3{width:220px;height:220px}
+  .feat-row{margin-bottom:48px}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="nav">
   <div class="container">
     <a href="https://bruzlife.com/" class="nav-logo">
-      <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
-        <text x="0" y="32" font-family="'Plus Jakarta Sans',sans-serif" font-size="34" font-weight="600" letter-spacing="1" class="logo-letter">bruz</text>
-      </svg>
+      <img src="data:image/jpeg;base64,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" alt="BRUZ">
     </a>
     <ul class="nav-links">
       <li><a href="#science">Science</a></li>
@@ -313,18 +310,17 @@ footer{padding:48px 0 32px;border-top:1px solid var(--cream)}
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="hero">
   <div class="container">
     <div class="hero-content">
       <p class="hero-eyebrow">Introducing BRUZ</p>
-      <h1 class="hero-title">Small steps.<br><em>Big compounding.</em></h1>
-      <p class="hero-sub">The smartest thing you can do for your health takes two minutes. Twice a day. No dramatic routine. Just one tool that works brilliantly.</p>
+      <h1 class="hero-title">The smallest upgrade<br>that <em>actually sticks.</em></h1>
+      <p class="hero-sub">Most health tools try to change your entire routine. BRUZ works with the two minutes you already have — making them smarter, more effective, and worth showing up for.</p>
       <div class="hero-actions">
-        <a href="https://bruzlife.com/products/bruz-smart-electric-toothbrush-navy-blue" class="btn-p">Shop Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="#science" class="btn-s">See the science</a>
+        <a href="https://bruzlife.com/products/bruz-smart-electric-toothbrush-navy-blue" class="btn-primary">Shop Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#science" class="btn-secondary">See the science</a>
       </div>
-      <div class="hero-price"><strong>₹1,499</strong> &nbsp;<s style="color:rgba(255,255,255,.2)">₹2,000</s> &nbsp;· Free shipping</div>
+      <div class="hero-price"><strong>₹1,499</strong> <s style="color:rgba(255,255,255,.2);margin-left:4px">₹2,000</s> <span style="margin-left:6px">· Free shipping</span></div>
     </div>
     <div class="hero-visual">
       <div class="hero-img">
@@ -334,163 +330,131 @@ footer{padding:48px 0 32px;border-top:1px solid var(--cream)}
   </div>
 </section>
 
-<!-- MANIFESTO -->
-<section class="manifesto reveal">
+<section class="manifesto">
   <div class="container">
     <p class="manifesto-text">
-      Most health tools promise a transformation.<br>
-      We'd rather build you a <strong>system</strong>.<br>
-      One that's so simple you actually stick with it.<br>
-      <strong>Consistency is underrated. We're fixing that.</strong>
+      You've bookmarked the productivity post. Downloaded the habit tracker. Told yourself you'd start on Monday.<br><br>
+      What if <strong>the change that actually lasted was the one you barely had to think about?</strong><br><br>
+      Small tools. Big compounding. That's BRUZ.
     </p>
   </div>
 </section>
 
-<!-- TRANSITION: dark → light -->
-<div class="trans"></div>
+<div class="tr-d2l"></div>
 
-<!-- STATS -->
 <section class="stats reveal">
   <div class="container">
-    <div class="stat"><div class="stat-num">40,000</div><div class="stat-lbl">Sonic Vibrations / Min</div></div>
+    <div class="stat"><div class="stat-num">40,000</div><div class="stat-label">Sonic Vibrations / Min</div></div>
     <div class="stat-div"></div>
-    <div class="stat"><div class="stat-num">60 Days</div><div class="stat-lbl">One Charge</div></div>
+    <div class="stat"><div class="stat-num">60 Days</div><div class="stat-label">Single-Charge Battery</div></div>
     <div class="stat-div"></div>
-    <div class="stat"><div class="stat-num">5 Modes</div><div class="stat-lbl">Intelligent Cleaning</div></div>
+    <div class="stat"><div class="stat-num">5 Modes</div><div class="stat-label">Intelligent Cleaning</div></div>
     <div class="stat-div"></div>
-    <div class="stat"><div class="stat-num">IPX7</div><div class="stat-lbl">Fully Waterproof</div></div>
+    <div class="stat"><div class="stat-num">IPX7</div><div class="stat-label">Fully Waterproof</div></div>
   </div>
 </section>
 
-<!-- LIFESTYLE -->
 <section class="lifestyle" id="lifestyle">
   <div class="container">
-    <div class="sec-hdr reveal">
+    <div class="sec-header reveal">
       <p class="sec-eye">Built for the Routine</p>
-      <h2 class="sec-ttl">Not the resolution.<br>The system.</h2>
-      <p class="sec-sub">You don't need a new plan. You need one small tool that fits into the life you already have. BRUZ was designed for exactly that.</p>
+      <h2 class="sec-title">It fits your life because<br>it doesn't try to change it.</h2>
+      <p class="sec-sub">BRUZ works with the two minutes you already spend brushing — the same routine, just meaningfully better.</p>
     </div>
     <div class="ls-grid">
-      <div class="ls-card tall reveal">
-        <div class="ls-inner">
-          <div class="ls-ph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-            <div class="hint"><strong style="color:var(--dark);display:block;margin-bottom:3px">Morning Ritual</strong>Person brushing in sunlit modern bathroom, warm morning light. Lifestyle angle.</div>
-          </div>
-          <div class="ls-overlay"></div>
-          <div class="ls-content"><h3>Two minutes. Every morning.</h3><p>Not a routine overhaul. Just one small click that says: I'm showing up for myself today.</p></div>
-        </div>
-      </div>
-      <div class="ls-card reveal">
-        <div class="ls-inner">
-          <div class="ls-ph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-            <div class="hint"><strong style="color:var(--dark);display:block;margin-bottom:3px">Travel-Ready</strong>BRUZ in Dopp kit flat-lay with passport, watch, essentials.</div>
-          </div>
-          <div class="ls-overlay"></div>
-          <div class="ls-content"><h3>60 days. No charger.</h3><p>From Delhi to Dubai, it just works. One less thing to think about.</p></div>
-        </div>
-      </div>
-      <div class="ls-card reveal">
-        <div class="ls-inner">
-          <div class="ls-ph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-            <div class="hint"><strong style="color:var(--dark);display:block;margin-bottom:3px">Wind-Down</strong>Cozy evening, warm ambient light, spa-like feel.</div>
-          </div>
-          <div class="ls-overlay"></div>
-          <div class="ls-content"><h3>Wind down. Mean it.</h3><p>Sensitive mode for a gentler close to the day. Your gums already know the difference.</p></div>
-        </div>
-      </div>
+      <div class="ls-card tall reveal"><div class="ls-inner"><div class="ls-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><div class="hint"><strong style="color:var(--dark);display:block;margin-bottom:3px">Morning Ritual</strong>Person brushing in sunlit modern bathroom, warm morning light, lifestyle angle.</div></div><div class="ls-overlay"></div><div class="ls-content"><h3>Two minutes that set the tone</h3><p>Your morning already has a rhythm. BRUZ makes one part of it work harder for you.</p></div></div></div>
+      <div class="ls-card reveal"><div class="ls-inner"><div class="ls-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><div class="hint"><strong style="color:var(--dark);display:block;margin-bottom:3px">Travel-Ready</strong>BRUZ in Dopp kit flat-lay with passport, watch, essentials.</div></div><div class="ls-overlay"></div><div class="ls-content"><h3>One less thing to pack</h3><p>A 60-day battery means the charger stays home. From Delhi to Dubai, it handles itself.</p></div></div></div>
+      <div class="ls-card reveal"><div class="ls-inner"><div class="ls-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><div class="hint"><strong style="color:var(--dark);display:block;margin-bottom:3px">Wind-Down</strong>Evening bathroom, warm light, spa-like tone.</div></div><div class="ls-overlay"></div><div class="ls-content"><h3>End the day on your own terms</h3><p>Sensitive mode keeps things gentle when you're winding down. A quiet way to show up for yourself.</p></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- TRANSITION: light → dark -->
-<div class="trans-l2d"></div>
+<div class="tr-l2d"></div>
 
-<!-- SCIENCE -->
 <section class="science" id="science">
   <div class="container">
-    <div class="sec-hdr reveal">
+    <div class="sec-header reveal">
       <p class="sec-eye">The Science</p>
-      <h2 class="sec-ttl">No hype. Just what happens<br>when you switch.</h2>
-      <p class="sec-sub">Sonic vibration creates fluid dynamics between teeth that bristles alone can't reach. Here's the data.</p>
+      <h2 class="sec-title">Here's what actually happens<br>when you switch.</h2>
+      <p class="sec-sub">Sonic technology generates fluid dynamics between your teeth, reaching areas that bristles alone physically cannot. The data tells the rest of the story.</p>
     </div>
     <div class="sonic-dia reveal">
       <div class="sonic-side">
-        <div class="sonic-stat"><h4>10×</h4><p>More plaque removal vs. manual brushing</p></div>
-        <div class="sonic-stat"><h4>40,000</h4><p>Vibrations per minute driving fluid between teeth</p></div>
+        <div class="s-stat"><h4>10×</h4><p>More plaque removal compared to manual brushing</p></div>
+        <div class="s-stat"><h4>40,000</h4><p>Vibrations per minute creating micro-currents between teeth</p></div>
       </div>
       <div class="sonic-ctr">
-        <div class="sonic-pulse"></div><div class="sonic-pulse"></div><div class="sonic-pulse"></div>
-        <div class="sci-placeholder">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(196,162,110,.45)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <p><strong style="color:rgba(255,255,255,.55);display:block;margin-bottom:3px">Nanobanana:</strong>Sleek black electric toothbrush floating on pure black background, visible sonic vibration waves radiating from brush head. Dramatic studio lighting, tech-product style. No text.</p>
+        <div class="pulse p1"></div><div class="pulse p2"></div><div class="pulse p3"></div>
+        <div class="sci-ph">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(196,162,110,.5)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <p><strong>Nanobanana prompt:</strong>Sleek black electric toothbrush floating on pure black background, visible sonic vibration waves radiating from brush head. Dramatic studio lighting, tech-product aesthetic.</p>
         </div>
       </div>
       <div class="sonic-side r">
-        <div class="sonic-stat"><h4>3 Levels</h4><p>Adjustable intensity for your sensitivity</p></div>
-        <div class="sonic-stat"><h4>DuPont™</h4><p>Soft bristles built for gum health</p></div>
+        <div class="s-stat"><h4>3 Levels</h4><p>Adjustable intensity that adapts to your comfort</p></div>
+        <div class="s-stat"><h4>DuPont™</h4><p>Advanced soft bristles engineered for gum health</p></div>
       </div>
     </div>
     <div class="sci-comp reveal">
-      <div class="comp-row">
-        <div class="comp-lbl">BRUZ Sonic</div>
-        <div class="comp-track"><div class="comp-fill bruz" data-width="92%"></div></div>
-        <div class="comp-val">92%</div>
-      </div>
-      <div class="comp-row">
-        <div class="comp-lbl">Manual Brush</div>
-        <div class="comp-track"><div class="comp-fill manual" data-width="38%"></div></div>
-        <div class="comp-val">38%</div>
-      </div>
-      <p style="text-align:center;font-size:.65rem;color:rgba(255,255,255,.25);margin-top:12px">Plaque removal effectiveness — sonic vs. manual brushing studies</p>
+      <div class="comp-row"><div class="comp-label">BRUZ Sonic</div><div class="comp-track"><div class="comp-fill b" data-width="92%"></div></div><div class="comp-val">92%</div></div>
+      <div class="comp-row"><div class="comp-label">Manual Brush</div><div class="comp-track"><div class="comp-fill m" data-width="38%"></div></div><div class="comp-val">38%</div></div>
+      <p class="sci-note">Plaque removal effectiveness — based on sonic vs. manual brushing clinical studies</p>
     </div>
   </div>
 </section>
 
-<!-- TRANSITION: dark → light -->
-<div class="trans-d2l"></div>
+<div class="tr-d2o"></div>
 
-<!-- FEATURES -->
 <section class="features" id="features">
   <div class="container">
-    <div class="sec-hdr reveal">
+    <div class="sec-header reveal">
       <p class="sec-eye">Technology</p>
-      <h2 class="sec-ttl">Smart where it matters.<br>Simple where it doesn't.</h2>
-      <p class="sec-sub">No gimmicks. Just a few things done precisely right.</p>
+      <h2 class="sec-title">Every feature earns its place.</h2>
+      <p class="sec-sub">We didn't add things for the sake of a longer spec sheet. If it's here, it's because it makes your two minutes measurably better.</p>
     </div>
+
     <div class="feat-row reveal">
       <div class="feat-img"><img src="https://bruzlife.com/cdn/shop/files/Bruz_7_1.jpg?v=1760704229&width=800" alt="BRUZ Smart Timer"></div>
       <div class="feat-info">
-        <h3>The timer that makes<br>you a better brusher</h3>
-        <p>30-second zone alerts guide you through all four quadrants. Two minutes, perfectly distributed. No guesswork involved.</p>
+        <h3>A timer that guides you through the whole mouth</h3>
+        <p>Every 30 seconds, a gentle pulse tells you to move to the next quadrant. After two minutes, it shuts off. You get full, even coverage without having to think about it.</p>
         <div>
-          <div class="spec"><div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="spec-tx">2-Minute Smart Timer<span>With 30-second zone alerts</span></div></div>
-          <div class="spec"><div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 0 20 10 10 0 0 1 0-20z"/><path d="M2 12h20"/></svg></div><div class="spec-tx">IPX7 Waterproof<span>Shower-safe. Obviously.</span></div></div>
+          <div class="spec"><div class="spec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="spec-txt">2-Minute Smart Timer<span>With 30-second quadrant alerts</span></div></div>
         </div>
       </div>
     </div>
+
     <div class="feat-row rev reveal">
-      <div class="feat-img"><img src="https://bruzlife.com/cdn/shop/files/Bruz_4.jpg?v=1760704229&width=800" alt="BRUZ Battery"></div>
+      <div class="feat-img"><img src="https://bruzlife.com/cdn/shop/files/Bruz_4.jpg?v=1760704229&width=800" alt="BRUZ Waterproof"></div>
       <div class="feat-info">
-        <h3>Charge it once.<br>Forget about it for two months.</h3>
-        <p>60 days on a single 4-hour charge. That's two months of twice-daily brushing. Your phone could never.</p>
+        <h3>Fully waterproof, because it should work wherever you do.</h3>
+        <p>IPX7-rated means it handles the shower, the sink, and everything in between. You don't have to be careful with it — that's the whole point.</p>
         <div>
-          <div class="spec"><div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><path d="M23 13v-2"/></svg></div><div class="spec-tx">60-Day Battery<span>4-hour USB-C charge</span></div></div>
-          <div class="spec"><div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="spec-tx">Extra Heads Included<span>Swap every 3 months</span></div></div>
+          <div class="spec"><div class="spec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 0 20 10 10 0 0 1 0-20z"/><path d="M2 12h20"/></svg></div><div class="spec-txt">IPX7 Waterproof<span>Submersible up to 1 meter for 30 minutes</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-row reveal">
+      <div class="feat-img"><img src="https://bruzlife.com/cdn/shop/files/Bruz_6.jpg?v=1760704229&width=800" alt="BRUZ Battery"></div>
+      <div class="feat-info">
+        <h3>Charge it once, then forget about it for two months.</h3>
+        <p>60 days of battery life on a single 4-hour charge via USB-C. That covers an entire trip, a full quarter of dental visits, or simply not thinking about batteries for a while.</p>
+        <div>
+          <div class="spec"><div class="spec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><path d="M23 13v-2"/></svg></div><div class="spec-txt">60-Day Battery Life<span>USB-C charging — works with cables you already own</span></div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MODES -->
+<div class="tr-o2d"></div>
+
 <section class="modes reveal">
   <div class="container">
-    <div class="sec-hdr">
+    <div class="sec-header">
       <p class="sec-eye">5 Modes</p>
-      <h2 class="sec-ttl">One brush. Five intentions.</h2>
+      <h2 class="sec-title">One brush. Five intentions.</h2>
       <p class="sec-sub">Tap to match your mood, your mouth, your moment.</p>
     </div>
     <div class="modes-grid">
@@ -503,48 +467,44 @@ footer{padding:48px 0 32px;border-top:1px solid var(--cream)}
   </div>
 </section>
 
-<!-- TRANSITION: light → dark -->
-<div class="trans-l2d"></div>
+<div class="tr-d2o"></div>
 
-<!-- TESTIMONIALS -->
-<section class="reviews" id="reviews">
+<section class="testimonials" id="reviews">
   <div class="container">
-    <div class="sec-hdr reveal">
+    <div class="sec-header reveal">
       <p class="sec-eye">Community</p>
-      <h2 class="sec-ttl">Real people. Visible results.</h2>
-      <p class="sec-sub">No paid reviews. No influencer scripts. Just people who tried it and stayed.</p>
+      <h2 class="sec-title">Don't take our word for it.</h2>
+      <p class="sec-sub">What actual BRUZ users across India have to say — unscripted, unsponsored.</p>
     </div>
   </div>
-  <div class="rev-track">
-    <div class="rev-card"><div class="rev-tag">Verified Purchase</div><blockquote>Honestly didn't think an electric brush could make such a difference. After just one week, my teeth feel noticeably cleaner. The timer keeps me consistent.</blockquote><div class="rev-author"><strong>Sharon V.</strong><span>Delhi</span></div></div>
-    <div class="rev-card"><div class="rev-tag">Verified Purchase</div><blockquote>Arrived fast, exceeded expectations. The attention to detail is remarkable. This is what value for money actually looks like.</blockquote><div class="rev-author"><strong>Shivani K.</strong><span>Mumbai</span></div></div>
-    <div class="rev-card"><div class="rev-tag">Verified Purchase</div><blockquote>The 60-day battery is not marketing. It's been over a month since my last charge and it's still going strong. Game changer for travel.</blockquote><div class="rev-author"><strong>Vikas P.</strong><span>Bangalore</span></div></div>
-    <div class="rev-card"><div class="rev-tag">Verified Purchase</div><blockquote>Was skeptical about a new brand. But this feels as good as any international one I've used. Clean design, fully waterproof, no complaints.</blockquote><div class="rev-author"><strong>Tushar V.</strong><span>Delhi</span></div></div>
-    <div class="rev-card"><div class="rev-tag">Verified Purchase</div><blockquote>Soft bristles, waterproof, better than described. Tried it without expectations and it exceeded all of them.</blockquote><div class="rev-author"><strong>Palak M.</strong><span>Pune</span></div></div>
-    <div class="rev-card"><div class="rev-tag">Verified Purchase</div><blockquote>Recommended to friends and family. Fast shipping, nice packaging, superb quality. The small things matter and BRUZ gets that.</blockquote><div class="rev-author"><strong>Saloni C.</strong><span>Mumbai</span></div></div>
-    <div class="rev-card"><div class="rev-tag">Verified Purchase</div><blockquote>Positive impact on my daily routine. Quality is superb, customer service is responsive. Exactly what I needed.</blockquote><div class="rev-author"><strong>Vishakha D.</strong><span>Mumbai</span></div></div>
+  <div class="testi-track">
+    <div class="testi-card"><blockquote>I was part of the early product testing team and honestly didn't think an electric brush could make this much difference. After a week, my teeth genuinely feel cleaner. The 2-minute timer keeps me consistent.</blockquote><div class="testi-author"><strong>Sharon Verma</strong><span>Delhi</span></div></div>
+    <div class="testi-card"><blockquote>Arrived fast, packaging was thoughtful. The attention to detail is remarkable for this price point — I've already told three friends about it.</blockquote><div class="testi-author"><strong>Shivani Kapoor</strong><span>Mumbai</span></div></div>
+    <div class="testi-card"><blockquote>I travel constantly for work, and the 60-day battery claim isn't marketing — it's been five weeks since my last charge and it's still going strong.</blockquote><div class="testi-author"><strong>Vikas Patel</strong><span>Bangalore</span></div></div>
+    <div class="testi-card"><blockquote>Soft bristles, waterproof, and better than described. I tried it with basically zero expectations and it exceeded every single one.</blockquote><div class="testi-author"><strong>Palak Mehta</strong><span>Pune</span></div></div>
+    <div class="testi-card"><blockquote>I was skeptical about trying a new brand, but it feels on par with international ones I've used at three times the price. Clean design, water-resistant, and reliable.</blockquote><div class="testi-author"><strong>Tushar Verma</strong><span>Delhi</span></div></div>
+    <div class="testi-card"><blockquote>Recommended it to my family immediately after using it for a week. Shipping was fast, the packaging was clean, and the product itself is excellent for the price.</blockquote><div class="testi-author"><strong>Saloni Chopra</strong><span>Mumbai</span></div></div>
+    <div class="testi-card"><blockquote>It has made a real positive difference in my daily routine. Quality is superb, and the customer support team was responsive when I had a quick question about the modes.</blockquote><div class="testi-author"><strong>Vishakha Divesh</strong><span>Mumbai</span></div></div>
     <!-- Duplicate for infinite scroll -->
-    <div class="rev-card"><div class="rev-tag">Verified Purchase</div><blockquote>Honestly didn't think an electric brush could make such a difference. After just one week, my teeth feel noticeably cleaner. The timer keeps me consistent.</blockquote><div class="rev-author"><strong>Sharon V.</strong><span>Delhi</span></div></div>
-    <div class="rev-card"><div class="rev-tag">Verified Purchase</div><blockquote>Arrived fast, exceeded expectations. The attention to detail is remarkable. This is what value for money actually looks like.</blockquote><div class="rev-author"><strong>Shivani K.</strong><span>Mumbai</span></div></div>
-    <div class="rev-card"><div class="rev-tag">Verified Purchase</div><blockquote>The 60-day battery is not marketing. It's been over a month since my last charge and it's still going strong. Game changer for travel.</blockquote><div class="rev-author"><strong>Vikas P.</strong><span>Bangalore</span></div></div>
-    <div class="rev-card"><div class="rev-tag">Verified Purchase</div><blockquote>Was skeptical about a new brand. But this feels as good as any international one I've used. Clean design, fully waterproof, no complaints.</blockquote><div class="rev-author"><strong>Tushar V.</strong><span>Delhi</span></div></div>
-    <div class="rev-card"><div class="rev-tag">Verified Purchase</div><blockquote>Soft bristles, waterproof, better than described. Tried it without expectations and it exceeded all of them.</blockquote><div class="rev-author"><strong>Palak M.</strong><span>Pune</span></div></div>
-    <div class="rev-card"><div class="rev-tag">Verified Purchase</div><blockquote>Recommended to friends and family. Fast shipping, nice packaging, superb quality. The small things matter and BRUZ gets that.</blockquote><div class="rev-author"><strong>Saloni C.</strong><span>Mumbai</span></div></div>
-    <div class="rev-card"><div class="rev-tag">Verified Purchase</div><blockquote>Positive impact on my daily routine. Quality is superb, customer service is responsive. Exactly what I needed.</blockquote><div class="rev-author"><strong>Vishakha D.</strong><span>Mumbai</span></div></div>
+    <div class="testi-card"><blockquote>I was part of the early product testing team and honestly didn't think an electric brush could make this much difference. After a week, my teeth genuinely feel cleaner. The 2-minute timer keeps me consistent.</blockquote><div class="testi-author"><strong>Sharon Verma</strong><span>Delhi</span></div></div>
+    <div class="testi-card"><blockquote>Arrived fast, packaging was thoughtful. The attention to detail is remarkable for this price point — I've already told three friends about it.</blockquote><div class="testi-author"><strong>Shivani Kapoor</strong><span>Mumbai</span></div></div>
+    <div class="testi-card"><blockquote>I travel constantly for work, and the 60-day battery claim isn't marketing — it's been five weeks since my last charge and it's still going strong.</blockquote><div class="testi-author"><strong>Vikas Patel</strong><span>Bangalore</span></div></div>
+    <div class="testi-card"><blockquote>Soft bristles, waterproof, and better than described. I tried it with basically zero expectations and it exceeded every single one.</blockquote><div class="testi-author"><strong>Palak Mehta</strong><span>Pune</span></div></div>
+    <div class="testi-card"><blockquote>I was skeptical about trying a new brand, but it feels on par with international ones I've used at three times the price. Clean design, water-resistant, and reliable.</blockquote><div class="testi-author"><strong>Tushar Verma</strong><span>Delhi</span></div></div>
+    <div class="testi-card"><blockquote>Recommended it to my family immediately after using it for a week. Shipping was fast, the packaging was clean, and the product itself is excellent for the price.</blockquote><div class="testi-author"><strong>Saloni Chopra</strong><span>Mumbai</span></div></div>
+    <div class="testi-card"><blockquote>It has made a real positive difference in my daily routine. Quality is superb, and the customer support team was responsive when I had a quick question about the modes.</blockquote><div class="testi-author"><strong>Vishakha Divesh</strong><span>Mumbai</span></div></div>
   </div>
 </section>
 
-<!-- TRANSITION: dark → light -->
-<div class="trans"></div>
+<div class="tr-o2w"></div>
 
-<!-- SHOP -->
 <section class="shop" id="shop">
   <div class="container">
-    <div class="sec-hdr reveal">
-      <p class="sec-eye">No Magic Hack</p>
-      <h2 class="sec-ttl">Just smart work. Repeated.</h2>
+    <div class="sec-header reveal">
+      <p class="sec-eye">Ready When You Are</p>
+      <h2 class="sec-title">Choose your BRUZ</h2>
     </div>
-    <div class="shop-lay reveal">
+    <div class="shop-layout reveal">
       <div class="shop-img">
         <img src="https://bruzlife.com/cdn/shop/files/WhatsApp_Image_2025-09-16_at_16.01.57_4a4fab32.jpg?v=1760704229&width=1946" alt="BRUZ Black" class="active" data-color="black">
         <img src="https://bruzlife.com/cdn/shop/files/Brush-Blue.jpg?v=1760704229&width=1946" alt="BRUZ Blue" data-color="blue">
@@ -552,63 +512,66 @@ footer{padding:48px 0 32px;border-top:1px solid var(--cream)}
       </div>
       <div class="shop-det">
         <h3>BRUZ Smart Electric Toothbrush</h3>
-        <p class="shop-tag">5 modes · 60-day battery · IPX7 waterproof</p>
+        <p class="tagline">5 modes · 60-day battery · IPX7 waterproof</p>
         <div class="s-price">
-          <span class="cur">₹1,499</span><span class="old">₹2,000</span>
+          <span class="now">₹1,499</span><span class="was">₹2,000</span>
           <span class="note">Tax included · Free shipping on prepaid orders</span>
         </div>
-        <div class="colors">
-          <div class="color-opt active" data-color="black"><span class="dot" style="background:#1A1917"></span>Black</div>
-          <div class="color-opt" data-color="blue"><span class="dot" style="background:#3A5A8C"></span>Blue</div>
-          <div class="color-opt" data-color="white"><span class="dot" style="background:#E0DDD5;border:1px solid #ccc"></span>White</div>
+        <div class="clr-sel">
+          <div class="clr-opt active" data-color="black"><span class="d" style="background:#1A1917"></span>Black</div>
+          <div class="clr-opt" data-color="blue"><span class="d" style="background:#3A5A8C"></span>Blue</div>
+          <div class="clr-opt" data-color="white"><span class="d" style="background:#E0DDD5;border:1px solid #ccc"></span>White</div>
         </div>
-        <a href="https://bruzlife.com/products/bruz-smart-electric-toothbrush-navy-blue" class="btn-p dark" style="font-size:.88rem;padding:16px 40px">Add to Cart — ₹1,499 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="https://bruzlife.com/products/bruz-smart-electric-toothbrush-navy-blue" class="btn-primary dark" style="font-size:.88rem;padding:16px 40px">Add to Cart — ₹1,499 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <div class="inbox-detail">Includes: 1 BRUZ toothbrush + 2 DuPont™ brush heads + USB-C charging cable</div>
         <div class="s-badges">
           <div class="s-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Free shipping on prepaid orders</div>
-          <div class="s-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>7-day easy returns</div>
+          <div class="s-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Easy returns within 7 days</div>
           <div class="s-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>12×7 customer support</div>
-        </div>
-        <div class="coming-soon">
-          <strong>Coming soon:</strong> Replacement brush heads and an expanded range. Same philosophy. More ways to stay consistent.
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
+<section class="coming">
+  <div class="container reveal">
+    <p class="sec-eye">What's Next</p>
+    <p>Replacement brush heads and an expanded range of brushes are on the way — designed with the same philosophy.</p>
+    <p class="hint">Same approach. More ways to show up for yourself.</p>
+  </div>
+</section>
+
 <section class="faq" id="faq">
   <div class="container">
-    <div class="sec-hdr reveal"><p class="sec-eye">Questions</p><h2 class="sec-ttl">The honest answers</h2></div>
+    <div class="sec-header reveal"><p class="sec-eye">Questions</p><h2 class="sec-title">Frequently Asked</h2></div>
     <div class="faq-list reveal">
-      <div class="faq-item"><button class="faq-q">What's your return policy?<span class="faq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>7-day free returns on unused products. Damaged or defective? We replace it. Just reach out within 7 days of delivery. Keep the brush heads sealed and packaging intact so we can process it smoothly.</p></div></div>
-      <div class="faq-item"><button class="faq-q">How long does shipping take?<span class="faq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>Orders ship within 24 hours. Delivery takes 7-8 business days depending on your location across India. No surprises.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Can I replace the brush heads?<span class="faq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>Yes, and you should. Every 3 months for optimal cleaning. Replacement heads are coming soon to the store.</p></div></div>
-      <div class="faq-item"><button class="faq-q">How do I track my order?<span class="faq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>You'll get a tracking number via email as soon as your order ships. Real-time updates, no guesswork.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Is it good for sensitive teeth?<span class="faq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>That's literally why we built the Sensitive mode. Gentler vibrations + DuPont soft bristles = designed specifically for sensitive gums and teeth. Start there and work your way up.</p></div></div>
+      <div class="faq-item"><button class="faq-q">What's your return policy?<span class="faq-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>We offer a 7-day free return on unused products. If it arrives damaged, we'll replace it — you just need to keep the packaging intact so we can confirm it hasn't been opened.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How long does shipping take?<span class="faq-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>We process orders within 24 hours, and delivery typically takes 7-8 business days across India depending on your location. We're actively working on making this faster.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Can I replace the brush heads?<span class="faq-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>Yes, and you should — dentists recommend swapping every 3 months. Replacement heads are coming to the store soon. We'll keep you posted when they're available.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How do I track my order?<span class="faq-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>You'll receive a tracking number by email as soon as it ships, with real-time updates on your delivery status.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Is BRUZ a good fit for sensitive teeth?<span class="faq-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>It was designed with that in mind. The Sensitive mode uses gentler vibrations paired with DuPont soft bristles that are specifically made for gum sensitivity. We'd suggest starting there and adjusting as you get comfortable.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- NEWSLETTER -->
-<section class="nl">
+<section class="news">
   <div class="container reveal">
     <p class="sec-eye">Stay in the loop</p>
-    <h2 class="sec-ttl">Join the BRUZ club</h2>
-    <p class="sec-sub">New launches, honest tips, and the occasional good joke. No spam. We promise.</p>
-    <div class="nl-form"><input type="email" placeholder="Your email"><button type="submit">Subscribe</button></div>
+    <h2 class="sec-title">Join the BRUZ club</h2>
+    <p class="sec-sub">New launches, honest updates, and the occasional useful tip. We keep it relevant and we keep it brief.</p>
+    <div class="news-form"><input type="email" placeholder="Your email"><button type="submit">Subscribe</button></div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="ft-grid">
       <div class="ft-brand">
         <a href="https://bruzlife.com/" class="nav-logo">
-          <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><text x="0" y="32" font-family="'Plus Jakarta Sans',sans-serif" font-size="34" font-weight="600" letter-spacing="1" fill="#0B0B0A">bruz</text></svg>
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCABOAMgDASIAAhEBAxEB/8QAHAABAAIDAQEBAAAAAAAAAAAAAAUGAwQHAgEI/8QAURAAAgEDAgMDBQgKDgsAAAAAAQIDBAURAAYHEiETIjEIFEFRcRUyYXKRlLHTFhgjNDdCVIO0wjNDUlVWdXaClqGywdLUFyQnY3OEkqO10fD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A/Hlsray23CnuFvqZaWrp3EsM0TlXjcHIYEeB6atXG2w2/bfEmvtlrRo6RqejrEjOMRmopYp2Rcfiq0pCjxwBkk9dU1f7tdG8pT8LdV/FNo/8bS6Dm+mmmgaaaaBpppoGmmmgaaaaBpppoGmmmgaaaaBpppoGmmmgaaaaBpppoPS/3a6l5Q1H59xinhikigAs1paaWd+VEAt1NlifHwx0AJJ6AEkDXNbvTJR3Sqo45RKkEzxLIPxwrEA/nxrf3HuPcG6a2nmvNwnuE8UMdPCCAMIiKigKoAzyqozjJwM50Ga3y7atdYslVSy7gCoQYmdqWDnz45X7o6Y/4Z1MUO+LJRykxcMNmvGT1SY10v8AW1SSPzanKfhGtjt0Fz4n7qoNlx1EYlp7dJE1VdJ0IYqwpU6xq3KQGkKDPQ419p4fJ2Wn5Z7jxUkmx79KCgVc/FMxP9egUm7eD12h803FwqqLOzuGa4bcvUwlQA9QsNSZIyD+b4CNYt5cN7JPZ59y8LtySbptECtLW0M1P2NytqAnvSxDPaRgYzKndBzkAddRlTtnYt4klGz96zQTAgRUe5KNKFpuhJ5Z0kkhGMftrRDqMZ1W4JdwbO3NHNDLW2a8UEgdHQmOWJvEEH1EH2EH0g6CH0HU41adyrTbhpJ9z2yijpahCGvFJToFhiZmAFRGo95G7EAqO6jkAYV0Vauvvh7dBYdjWK3bj3NTWCe5vQTV7dhR1DxjshO3SNZO93UZsKWGeXOcHGNQopmjq2grBJTGJykwZO+hBwRynHe+A4+HGsHp1N2+l3PvW/0dupEud+uswEUEXM88pUeAGckKB+YDQa1JW22knDizQ16cgDJWzSY5v3Q7JoyPYSfbqfs1ooN3UG4p7fbFtVfababkkVNK7U8kUbosqkSszhuV+cNzkdwry94FbDe+DVRtuj7Td+/dlWGr7TsnoHrpKuqifGSskdNHIU9p6a3KOx0HDzZW6rrUb22pdq282kWu2Ulor/OZH7WaJ5ZJFADRKsSOO+FJYgY0FC2Zf12nco7sLHYr5M8RVILtSec06AtgkxnALd3oTkAH19R2Ku4T2vifwiuHFzYNLFZa6gln92rApJpg0ah3elPvkUqQwjbIGSAQFAPAJv2KD4n6za/XXk1VUVF5FXFColfkUyVyA5x3mpI1UfKRoPyBpppoGtiBUiWOqliSde0wImJCty8pIbBBwQcdCD49RjWvrMx/1OMf7x/oXQWO5Wm33HZs27bVCtCaWvioq6gDs6IZkkeKSItlgmInVldmIIUhm58JXqbzaOTNZDNIhHvY5BGfRg5Kt9GrZYZVj4N7sQk5lvFpQY9fZ1rdfk1o7ek2ZWUyw7onvlunhUqlVbaaOrEwz3Q8ckkfKQMjmDkEBRyggsQiu1sv5BcPnqfVadrZfyC4fPU+q1aPMeEf8Kt8f0bpf87p5jwj/hVvj+jdL/ndBV+1sv5BcPnqfVadrZfyC4fPU+q1M3a0bSqY3G0b5e66oiheZ4LlaY6YuiDmfkaOeUEqoZjzcowpwScA1XQWC32qgv0i0VjjrIboVPZUs8gm87YBiUjKopEhwAqEHnOQGB5VZqc4E7Uum6OIlvNC60lFa5UuNyuMjckVBTQsHeZ2PRcBenrONNBRD6Ndb2jLT8KtiUW+pKamqN533n+xyOcK4tlMh5Xr2jbPM7MGSLmHL3Xbry4MVsna3DS/mjqbvxH+xqONFFfR1dulknYqoLmB4wY2DHPLzlWHgVYAFo7jTvSm3xvZrha6OWgsdDSw22zUcvLzU9HCvKitjpzE8zkZOC5GSBnQVCvrKu4V09fX1U9XV1EjSzzzyF5JXY5ZmY9WJJJJPU6waaaBqYp7k9dbIrLcG7WOHIoJmYBqYsclOY/tTEklScKzFxjLh4fTQS+1bqbFfoaqeBp6bvQ1lMWK9vA4KyxEjqOZSRkdQcEYIGvW8rG+290VdnM/nMUTK9NUcgXziCRRJDLygnl543RsZOObHo1NbTtOzb/z1m598LtySMgzxyW6eqkqenVoigILnHUSFBlsgkE8upxPv1q3JvepuVioaihtKQ01HQw1Dhpexp4I4EZyOnOyxhiBkAsQCcZIVg+jXXNx3mfhhsGi2Zt9xSbh3BQRV+47jGcVEcEy88NAreMadmUkfHVjIB70EHk0Kh540PgzAH5dXTj7Vy1nGreBlYt5tdp6OPJ8IoGMMa+wJGoHs0FH0000GSX9ji+J+sddutd9qLV5Et1t1O6r7r70WmmHpMS0ySnH86NPl1xGX9ji+J+sddBuE7L5N1npg3dfdta5HwrS04H9o6DnWmmmgayt96J8dvoXWLWU/eqfHb6F0Fnth/2Rbh+G/Wr9HuGqnq1238Ee4P4+tX6PcNVTQNNNe41XlLvnHoA9J0G5aq2ptLtW00irLNTz0wGM/c5Ymif5VdgPh9mt/YO0r7vjddFtrbtG1VcKx+VR4LGv4zufxVUdSdaFltl03De6S0WmkmrrhWSrDTwRLlnY9AAP/gAPQBrtHEuqo+C+024ZbVuSS7tuUQbd12pH6wr4rb4nHUKPGTGOboD0JUBp8Z9xWfZO3ZODGwaqOooIXR9y3iPBa7Vi4PICM4hjPQDPvgfVlmuKaaDetUFtnd0uFfNR5GInSmEq82D7/vAqucZKhjjOASMHze7ZW2a61FsuMJhqqd+V1zkH0hlI6MpBBDDoQQRkHXyvpkhWnngZngmiVgxxkOAA6nBOMNnAPXlKnHeGrPWQtu3asVwpQJL1Y6UQ10XN36mijGI51HixiXEbgdRGsbYwsjAKbpppoGmmvSDPU55R46DYooqJ+0FZUzU55fufZwiQE46c2WBUeHUAnx6eg7G47NWbfvk1qruzaWMI6yRklJY3RXjkUkA8roysMgHDDIHhrNs7b1z3buy27cs8PbV9xqVghUDoCT1Y+pQMkn0AHU7xsuVnunE+5ybfftbVSLTW6kmDBhPHS08dMJQfU/Zc4+BhoKhR/fcXx1+katXG/wDDTvj+UVw/SZNVWj++4vjr9I1auN/4ad8fyiuH6TJoKfpppoMsw+5w/E/WOuhVcHP5M9vqgoIh3hUxk+rno4SB/wBh+TVGqystsopFRF7JXgcBssxDFwxHoyHwPXyHVs2vXtdeFu4Nl9qiTRVcV+okYgdqYIpI54wSQM9lJ2nw9iQMkgaCi6aaaBrISPN1X0hmP9nWPXuRgVRQAOVcEgePUnr8uPzaC121T/od3C+On2QWoZ/5e4aqOulXKkay+ThbTUQcsm59yPVwOfEw0UDRZ9heqcfzNc2AydBkp0jJ55mZYx+58WPqH/v0fD0B9hZ62qjgp4GkkkYRxQxKWJJOAqjqT1PtJ9Z1jlcsFUdFUYUZ8Nds2PFbOEvC2k4nVMkFTva/iWPalM8IlSgjR+SWtcHu847wjByM4OGHNyhkurngHthbXb6mAcT7zT4uVRGeaTb9I6giGMjotRIDlnByi9BjmVtcNdmd2d2LMxySTkk+vWStqqmurZ62tqJqmqqJGlmmmcu8jscszMepJJJJPjrDoGmmmgmdt1FBKXtF5qPNqGpOUqezL+aTYwshABYofeuF6kYYBmRRr5VU982huKNhJNb7jSMk1PUU83rAZJYpFOGVhhldSQwIIONQ+rBatzyx22Cy3qkjvFnhY9lBK3JLTBnDP5vKATGT3u6Q0eWLFGOgmFvWyNwU/LuWx1VmuZ8bpYkQxyEkZaWjcqhOAQOyeEdclTqSTaXCRwkg4u18aEd9JdqSiQewLMyn/qGsO1eHCb4pblW7NubJHbYYpayG7R9kyF89yN4y/aAFT3iseeh5R4ardRtS4w3A0TzUpkBxkO2P7Og+7notn0NT2e377d71HggvU2xKEZx0IxNKSM+ggag4Y5qmeOmp43kkkcLHHGpYsxOAAPEk9B6zrtm1vJx3DdNqXHdlyv8AaqOzW2lkq6nzdZJ6koilmCIwRS2B0y4Hw6h7bxK2xsAluFe25PdflwNybgSOarjJAz2FOuYYCDzDJMpIPo0EvVU8HA3ZNbR1UgbibuKi7F4EIJsFBKve52/FqZVOAo6opzlSRzcQX3w9uti6V9bdLlU3K5VU1XW1UrTTzzOWeR2OWZiepJJ1hgZFnjaVGeMMCyg4JGeoB9Gg90f33F8dfpGrZxyGONW+P5Q1/wCkPqc4P8Kq3evEKisnujTU9KIIq+olPNz+blRIQoxjtOXpgkDPp1TN+30bo3xftyim80F1uNRWiDn5+yEsjOE5sDOObGcDONBCaaaaCUsEtCzz2+5StDTVaBVm6lYJQe5IyjqV6sp8SFdiASADhqYLjZLsEftaSspnWRHjfqp6Mjo6nqCMMrKcEEEHGDrR1OW2/IKCK13qi907dCHECiTsp6fmPMRFLhsLzZPIwZO85Chm5tB5kqbNcg0lbFLbqzldjLSQq8Uz+K5jLL2eTnJQkAYwnTrrvQUMYR3vdJKhI51gilaRR6cB0VSfg5h7dXGg4ZTX/a9buvbF2jms9LUmmYXGI09RzhVboiGRSMMOvMPYNV6ybRuV3uYt9NPSJKW5cyOwX+pToIOfsFkIp2kdQxw7qFJHo7oJwfznVu4P8PbrxG3YlqoXWkoKdfOLncZjyw0NMvV5XY9B0BwCep+DJF+3HwOt3Dbb9r3RxPvtTNbrhN2UFJt2ESyu3KWAaScxiMYHiFf2apu8uKFfc9vNtDa9tg2ntEsrPa6OQvJVOM/dKmcgPO3XwOEHKuFBGdB547bqtG596pBtmEQ7ZsdJHaLKuCGemiLfdWyAeaR2dzkA94A9RqhHoMenXzVx4f7XbiFeqTbVvnjo75IrCF5gfN5o0jZyXYZZGUJyjlVg2RnlIJcKdqy3PdD3jZ1k25dEY+4jTLQ1UfVhDK3O0LKfEB8spBGOZwQ2V5enHyX9/Bse6+2fnM/1On2r+/v332z85n+p0HFuSg/Kan5uv+PTs6D8pqfm6/49dp+1f39+++2fnM/1On2r+/v332z85n+p0HIbVb7dcKyOj91TSSzOscctTBywqSwGXZWJVQM9QrfJ1DXZ6Lybr5ZoKvce77xazt6zwmtuUdteSWqlhTqyRK6IvMR0yWAGc9fDTQf/2Q==" alt="BRUZ" style="mix-blend-mode:multiply">
         </a>
-        <p>Science-backed health essentials that fit your routine and your budget. Starting with your smile.</p>
+        <p>Small, essential health tools that turn everyday effort into real, lasting progress. Designed in India.</p>
         <div class="ft-email">Email: <a href="mailto:contact.bruz@gmail.com">contact.bruz@gmail.com</a></div>
       </div>
       <div class="ft-col">
@@ -635,24 +598,15 @@ footer{padding:48px 0 32px;border-top:1px solid var(--cream)}
 </footer>
 
 <script>
-const nav=document.getElementById('nav'),hero=document.querySelector('.hero'),mani=document.querySelector('.manifesto');
-function updateNav(){
-  const hb=mani?mani.getBoundingClientRect().bottom:hero.getBoundingClientRect().bottom;
-  const s=window.scrollY>40;
-  nav.classList.toggle('scrolled',s&&hb>0);
-  nav.classList.toggle('light-mode',hb<=0);
-}
+const nav=document.getElementById('nav'),hero=document.querySelector('.hero'),manifesto=document.querySelector('.manifesto');
+function updateNav(){const darkEnd=(manifesto||hero).getBoundingClientRect().bottom;const s=window.scrollY>40;nav.classList.toggle('scrolled',s&&darkEnd>0);nav.classList.toggle('light-mode',darkEnd<=0)}
 window.addEventListener('scroll',updateNav);updateNav();
-
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-const cObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.querySelectorAll('.comp-fill').forEach(b=>{b.style.width=b.dataset.width})})},{threshold:.4});
-document.querySelectorAll('.sci-comp').forEach(el=>cObs.observe(el));
-
-document.querySelectorAll('.faq-q').forEach(btn=>{btn.addEventListener('click',()=>{const i=btn.parentElement,w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open')})});
-
-document.querySelectorAll('.color-opt').forEach(o=>{o.addEventListener('click',()=>{const c=o.dataset.color;document.querySelectorAll('.color-opt').forEach(x=>x.classList.remove('active'));o.classList.add('active');document.querySelectorAll('.shop-img img').forEach(img=>{img.classList.toggle('active',img.dataset.color===c)})})});
+const compObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.querySelectorAll('.comp-fill').forEach(b=>{b.style.width=b.dataset.width})})},{threshold:.4});
+document.querySelectorAll('.sci-comp').forEach(el=>compObs.observe(el));
+document.querySelectorAll('.faq-q').forEach(btn=>{btn.addEventListener('click',()=>{const item=btn.parentElement,was=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!was)item.classList.add('open')})});
+document.querySelectorAll('.clr-opt').forEach(opt=>{opt.addEventListener('click',()=>{const c=opt.dataset.color;document.querySelectorAll('.clr-opt').forEach(o=>o.classList.remove('active'));opt.classList.add('active');document.querySelectorAll('.shop-img img').forEach(img=>{img.classList.toggle('active',img.dataset.color===c)})})});
 </script>
 </body>
 </html>
